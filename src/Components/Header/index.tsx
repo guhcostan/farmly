@@ -5,16 +5,17 @@ import {
   HeaderButton,
   HeaderButtonContainer,
   HeaderContainer,
+  HeaderStickContainer,
   InputContainer,
 } from './styles';
 import { FullWidthWrapperColor } from '../../global-styled-components';
 import Logo from '../Logo';
 import Input from '../Input';
 
-const LoginHeader: React.FC = () => {
+const Header: React.FC = () => {
   const theme = useTheme();
   return (
-    <FullWidthWrapperColor color="white">
+    <HeaderStickContainer color="white">
       <HeaderContainer>
         <Logo />
         <InputContainer>
@@ -31,8 +32,8 @@ const LoginHeader: React.FC = () => {
           <HeaderButton text="Anunciar" />
         </HeaderButtonContainer>
       </HeaderContainer>
-    </FullWidthWrapperColor>
+    </HeaderStickContainer>
   );
 };
 
-export default LoginHeader;
+export default Header;

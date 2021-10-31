@@ -7,6 +7,7 @@ interface ButtonStyledProps {
 
 interface TextProps extends ButtonStyledProps {
   margin: boolean;
+  fontSize?: number;
 }
 
 export const ButtonStyled = styled.div<ButtonStyledProps>`
@@ -23,6 +24,6 @@ export const ButtonStyled = styled.div<ButtonStyledProps>`
 export const ButtonText = styled.span<TextProps>`
   margin-left: ${(props) => (props.margin ? 4 : 0)}px;
   color: ${(props) => props.theme.colors[props.textMode ? 'white' : 'black']};
-  font-size: 16px;
+  font-size: ${(props) => props.fontSize || 16}px;
   font-weight: 500;
 `;

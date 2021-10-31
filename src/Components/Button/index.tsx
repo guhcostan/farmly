@@ -7,12 +7,13 @@ const Button: React.FC<Props> = ({
   text,
   textMode,
   style,
+  fontSize,
   className,
 }) => {
   return (
     <ButtonStyled textMode={!textMode} style={style} className={className}>
       {icon}
-      <ButtonText textMode={!textMode} margin={!!icon}>
+      <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
         {text}
       </ButtonText>
     </ButtonStyled>

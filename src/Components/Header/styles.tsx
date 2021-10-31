@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../Button';
+import { FullWidthWrapperColor } from '../../global-styled-components';
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -18,10 +19,17 @@ export const HeaderButtonContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin: 0 20px 0 12px;
+  margin: 0 30px 0 15px;
   width: 100%;
 `;
 
 export const HeaderButton = styled(Button)`
   margin: 0 12px;
+`;
+
+export const HeaderStickContainer = styled(FullWidthWrapperColor)`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid ${(props) => props.theme.colors.black};
 `;
