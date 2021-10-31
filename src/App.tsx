@@ -1,13 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import styled, { ThemeProvider } from 'styled-components';
 import NavigationContainer from './navigations';
+import theme from './theme';
+
+const AppContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+`;
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <NavigationContainer />
-    </div>
+    <AppContainer>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer />
+      </ThemeProvider>
+    </AppContainer>
   );
 };
 
