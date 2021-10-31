@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from '../../global-styled-components';
 import Banner from '../../Components/Banner';
 import AnnouncimentCard from '../../Components/AnnouncimentCard';
 import { HomeContainer } from './styles';

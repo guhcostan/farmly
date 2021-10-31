@@ -8,7 +8,6 @@ import {
   HeaderStickContainer,
   InputContainer,
 } from './styles';
-import { FullWidthWrapperColor } from '../../global-styled-components';
 import Logo from '../Logo';
 import Input from '../Input';
 
