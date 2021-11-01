@@ -12,11 +12,14 @@ const Home: React.FC = () => {
     <>
       <Banner />
       <HomeContainer>
-        <AnnouncimentCard price={2000} thumbmails={thumbmails} nOxen={5} />
-        <AnnouncimentCard price={2000} thumbmails={thumbmails} nOxen={5} />
-        <AnnouncimentCard price={2000} thumbmails={thumbmails} nOxen={5} />
-        <AnnouncimentCard price={2000} thumbmails={thumbmails} nOxen={5} />
-        <AnnouncimentCard price={2000} thumbmails={thumbmails} nOxen={5} />
+        <AnnouncimentCard
+          price={2000}
+          thumbmails={thumbmails}
+          nOxen={5}
+          city="Varginha"
+          state="MG"
+          breed="Guzerá"
+        />
       </HomeContainer>
     </>
   );

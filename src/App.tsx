@@ -3,6 +3,7 @@ import './App.css';
 import styled, { ThemeProvider } from 'styled-components';
 import NavigationContainer from './navigations';
 import theme from './theme';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const AppContainer = styled.div`
   display: flex;

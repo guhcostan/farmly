@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-/* @eslint-ignore-next-line import/no-unresolved */
-import SimpleImageSlider from 'react-simple-image-slider';
+
+import { MobileView } from 'react-device-detect';
 import { GiCow } from 'react-icons/gi';
+import { MdPlace, SiHappycow } from 'react-icons/all';
+import { Carousel } from 'react-responsive-carousel';
 import { Props } from './interface';
 import {
   CardContainer,
   Price,
   PriceContainer,
+  PriceMobileContainer,
   Propertie,
   PropertieContainer,
   PropertieRow,
@@ -17,37 +20,39 @@ import Button from '../Button';
 const AnnouncimentCard: React.FC<Props> = ({
   price,
   thumbmails,
+  city,
+  state,
+  breed,
   nOxen,
   currency,
 }) => {
   const [mouseHouver, setMouseHover] = useState(false);
   return (
     <CardContainer>
-      <SimpleImageSlider
-        width={300}
-        height={200}
-        style={{ borderRadius: 8 }}
-        navSize={20}
-        navMargin={12}
-        images={thumbmails}
-        showBullets
-        showNavs
-      />
+      <Carousel showThumbs={false} showStatus={false}>
+        {thumbmails.map((t) => (
+          <img
+            style={{ height: 200, objectFit: 'cover' }}
+            src={t?.url}
+            alt=""
+          />
+        ))}
+      </Carousel>
       <PropertieContainer>
         <PropertieRow>
           <Propertie>
-            <GiCow />
+            <SiHappycow />
             <PropertieText>{nOxen}</PropertieText>
           </Propertie>
           <Propertie>
             <GiCow />
-            <PropertieText>{nOxen}</PropertieText>
+            <PropertieText>{breed}</PropertieText>
           </Propertie>
         </PropertieRow>
         <PropertieRow>
           <Propertie>
-            <GiCow />
-            <PropertieText>{nOxen}</PropertieText>
+            <MdPlace />
+            <PropertieText>{`${city}-${state}`}</PropertieText>
           </Propertie>
           <Propertie>
             <GiCow />
@@ -66,7 +71,15 @@ const AnnouncimentCard: React.FC<Props> = ({
             {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
           </Price>
         ) : (
-          <Button text="Comprar!" fontSize={50} />
+          <PriceMobileContainer>
+            <Button text="Comprar!" fontSize={50} />
+            <MobileView>
+              <Price>
+                {currency || 'R$'}{' '}
+                {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
+              </Price>
+            </MobileView>
+          </PriceMobileContainer>
         )}
       </PriceContainer>
     </CardContainer>
