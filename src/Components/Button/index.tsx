@@ -11,11 +11,18 @@ const Button: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <ButtonStyled textMode={!textMode} style={style} className={className}>
+    <ButtonStyled
+      textMode={!textMode}
+      style={style}
+      padding={!icon}
+      className={className}
+    >
       {icon}
-      <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
-        {text}
-      </ButtonText>
+      {text && (
+        <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
+          {text}
+        </ButtonText>
+      )}
     </ButtonStyled>
   );
 };

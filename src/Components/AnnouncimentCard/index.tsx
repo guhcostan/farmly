@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { MobileView } from 'react-device-detect';
 import { GiCow } from 'react-icons/gi';
-import { MdPlace, SiHappycow } from 'react-icons/all';
+import { MdCalendarToday, MdPlace, SiHappycow } from 'react-icons/all';
 import { Carousel } from 'react-responsive-carousel';
 import { Props } from './interface';
 import {
@@ -14,6 +14,7 @@ import {
   PropertieContainer,
   PropertieRow,
   PropertieText,
+  Thumbmail,
 } from './styles';
 import Button from '../Button';
 
@@ -24,6 +25,7 @@ const AnnouncimentCard: React.FC<Props> = ({
   state,
   breed,
   nOxen,
+  nMonths,
   currency,
 }) => {
   const [mouseHouver, setMouseHover] = useState(false);
@@ -31,11 +33,7 @@ const AnnouncimentCard: React.FC<Props> = ({
     <CardContainer>
       <Carousel showThumbs={false} showStatus={false}>
         {thumbmails.map((t) => (
-          <img
-            style={{ height: 200, objectFit: 'cover' }}
-            src={t?.url}
-            alt=""
-          />
+          <Thumbmail src={t?.url} alt="" />
         ))}
       </Carousel>
       <PropertieContainer>
@@ -55,8 +53,8 @@ const AnnouncimentCard: React.FC<Props> = ({
             <PropertieText>{`${city}-${state}`}</PropertieText>
           </Propertie>
           <Propertie>
-            <GiCow />
-            <PropertieText>{nOxen}</PropertieText>
+            <MdCalendarToday />
+            <PropertieText>{nMonths} meses</PropertieText>
           </Propertie>
         </PropertieRow>
       </PropertieContainer>
@@ -66,20 +64,17 @@ const AnnouncimentCard: React.FC<Props> = ({
         onMouseLeave={() => setMouseHover(false)}
       >
         {!mouseHouver ? (
-          <Price>
-            {currency || 'R$'}{' '}
-            {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
-          </Price>
-        ) : (
           <PriceMobileContainer>
-            <Button text="Comprar!" fontSize={50} />
+            <Price>
+              {currency || 'R$'}{' '}
+              {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
+            </Price>
             <MobileView>
-              <Price>
-                {currency || 'R$'}{' '}
-                {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
-              </Price>
+              <Button text="Comprar!" fontSize={20} />
             </MobileView>
           </PriceMobileContainer>
+        ) : (
+          <Button text="Comprar!" fontSize={50} />
         )}
       </PriceContainer>
     </CardContainer>

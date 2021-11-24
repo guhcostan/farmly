@@ -1,6 +1,8 @@
 import React from 'react';
-import { MdOutlineAccountCircle } from 'react-icons/md';
+import { MdMenu, MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
+import { IoMdSearch } from 'react-icons/all';
+import { isMobile } from 'react-device-detect';
 import {
   HeaderButton,
   HeaderButtonContainer,
@@ -10,6 +12,7 @@ import {
 } from './styles';
 import Logo from '../Logo';
 import Input from '../Input';
+import Button from '../Button';
 
 const Header: React.FC = () => {
   const theme = useTheme();
@@ -18,18 +21,28 @@ const Header: React.FC = () => {
       <HeaderContainer>
         <Logo />
         <InputContainer>
-          <Input placeholder="Busque aqui" />
-        </InputContainer>
-        <HeaderButtonContainer>
-          <HeaderButton
-            textMode
-            icon={
-              <MdOutlineAccountCircle size={20} color={theme.colors.black} />
-            }
-            text="Entrar"
+          <Input
+            placeholder="Busque aqui"
+            button={<IoMdSearch style={{ display: 'flex' }} size={20} />}
           />
-          <HeaderButton text="Anunciar" />
-        </HeaderButtonContainer>
+        </InputContainer>
+        {!isMobile ? (
+          <HeaderButtonContainer>
+            <HeaderButton
+              textMode
+              icon={
+                <MdOutlineAccountCircle size={20} color={theme.colors.black} />
+              }
+              text="Entrar"
+            />
+            <HeaderButton text="Anunciar" />
+          </HeaderButtonContainer>
+        ) : (
+          <Button
+            textMode
+            icon={<MdMenu size={30} color={theme.colors.black} />}
+          />
+        )}
       </HeaderContainer>
     </HeaderStickContainer>
   );

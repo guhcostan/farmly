@@ -2,7 +2,7 @@ export interface Props {
   icon?: any;
   fontSize?: number;
   style?: any;
-  text: string;
+  text?: string;
   className?: string;
   textMode?: boolean;
 }

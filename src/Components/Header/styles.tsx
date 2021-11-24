@@ -5,7 +5,7 @@ import { FullWidthWrapperColor } from '../../global-styled-components';
 export const HeaderContainer = styled.div`
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth}px;
-  padding: 0 1.5rem;
+  padding: 0;
   height: 112px;
   justify-content: space-between;
   align-items: center;

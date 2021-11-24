@@ -1,9 +1,14 @@
 import React from 'react';
-import { InputStyled } from './styles';
+import { ButtonContainer, InputContainer, InputStyled } from './styles';
 import { Props } from './interfaces';
 
-const Input: React.FC<Props> = ({ placeholder }) => {
-  return <InputStyled placeholder={placeholder} />;
+const Input: React.FC<Props> = ({ placeholder, button }) => {
+  return (
+    <InputContainer>
+      <InputStyled placeholder={placeholder} />
+      <ButtonContainer>{button}</ButtonContainer>
+    </InputContainer>
+  );
 };
 
 export default Input;

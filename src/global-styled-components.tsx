@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface FullWidthWrapperColorProps {
-  color: string;
+  color?: string;
   image?: string;
 }
 export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
@@ -15,7 +15,20 @@ export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
 `;
 
 export const Container = styled.div`
-  padding: 20px;
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth}px;
+`;
+
+export const BackgroundColorWidth = styled.div`
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #f5f5f5;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const FlexDiv = styled.div`
+  display: flex;
 `;
