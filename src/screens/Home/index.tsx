@@ -50,7 +50,7 @@ const Home: React.FC = () => {
                 nMonths={8}
                 city={announcement.farm?.location?.city}
                 state={announcement.farm?.location?.state}
-                breed={announcement.breed}
+                breed={announcement.breed?.name}
               />
             );
           })}
