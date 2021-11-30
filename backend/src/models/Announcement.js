@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const AnnouncementSchema = mongoose.Schema({
-  nOx: Number,
+    nOx: Number,
 });
 
 module.exports = mongoose.model("Announcement", AnnouncementSchema);

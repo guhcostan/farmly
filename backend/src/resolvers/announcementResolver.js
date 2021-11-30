@@ -2,36 +2,36 @@ const Announcement = require("../models/Announcement");
 const Breed = require("../models/Breed");
 
 const announcementResolver = {
-  Query: {
-    announcements() {
-      return Announcement.find();
+    Query: {
+        announcements() {
+            return Announcement.find();
+        },
+        announcement(_, {id}) {
+            return Announcement.findById(id);
+        },
     },
-    announcement(_, { id }) {
-      return Announcement.findById(id);
+    Announcement: {
+        breed(_parent, y, z, x) {
+            return Breed.findById(_parent.breedId)
+        }
     },
-  },
-  Announcement: {
-    breed(_parent, y, z, x) {
-      return [Breed.findById(JSON.parse(JSON.stringify(_parent)).breedId)]
-    }
-  },
-  Mutation: {
-    createAnnouncement(_, { announcement }, {currentUser}) {
-      if (!currentUser) throw new Error('Você precisa fazer login');
-      const newAnnouncement = new Announcement(announcement);
-      return newAnnouncement.save();
+    Mutation: {
+        createAnnouncement(_, {announcement}, {currentUser}) {
+            if (!currentUser) throw new Error('Você precisa fazer login');
+            const newAnnouncement = new Announcement(announcement);
+            return newAnnouncement.save();
+        },
+        updateAnnouncement(_, {id, announcement}, {currentUser}) {
+            if (!currentUser) throw new Error('Você precisa fazer login');
+            return Announcement.findByIdAndUpdate(id, announcement, {
+                new: true,
+            });
+        },
+        deleteAnnouncement(_, {id}, {currentUser}) {
+            if (!currentUser) throw new Error('Você precisa fazer login');
+            return Announcement.findByIdAndRemove(id);
+        },
     },
-    updateAnnouncement(_, { id, announcement }, {currentUser}) {
-      if (!currentUser) throw new Error('Você precisa fazer login');
-      return Announcement.findByIdAndUpdate(id, announcement, {
-        new: true,
-      });
-    },
-    deleteAnnouncement(_, { id }, {currentUser}) {
-      if (!currentUser) throw new Error('Você precisa fazer login');
-      return Announcement.findByIdAndRemove(id);
-    },
-  },
 };
 
 module.exports = announcementResolver;
