@@ -1,5 +1,7 @@
 require("dotenv").config();
+const User = require("./models/User");
 
+const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const { ApolloServer } = require("apollo-server");
 
@@ -27,7 +29,25 @@ mongoose
   .catch((error) => console.log("Databased failed: ", error));
 
 // GraphQL
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers,
+  context: async ({ req, res }) => {
+    const header =  req.headers.authorization;
+
+    try {
+      if (header) {
+        const token = header.replace('Bearer ', '');
+        const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+        const userExist = await User.exists({_id: decoded.id})
+        if(userExist) {
+          return {currentUser: decoded};
+        }
+      }
+    }catch (e){
+      return null
+    }
+    return null
+  },
+});
 
 server
   .listen()

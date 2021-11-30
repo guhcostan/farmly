@@ -16,16 +16,19 @@ const announcementResolver = {
     }
   },
   Mutation: {
-    createAnnouncement(_, { announcement }) {
+    createAnnouncement(_, { announcement }, {currentUser}) {
+      if (!currentUser) throw new Error('Você precisa fazer login');
       const newAnnouncement = new Announcement(announcement);
       return newAnnouncement.save();
     },
-    updateAnnouncement(_, { id, announcement }) {
+    updateAnnouncement(_, { id, announcement }, {currentUser}) {
+      if (!currentUser) throw new Error('Você precisa fazer login');
       return Announcement.findByIdAndUpdate(id, announcement, {
         new: true,
       });
     },
-    deleteAnnouncement(_, { id }) {
+    deleteAnnouncement(_, { id }, {currentUser}) {
+      if (!currentUser) throw new Error('Você precisa fazer login');
       return Announcement.findByIdAndRemove(id);
     },
   },

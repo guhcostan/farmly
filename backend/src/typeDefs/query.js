@@ -4,6 +4,7 @@ const query = gql`
   type Query {
     announcements: [Announcement]
     breeds: [Breed]
+    users: [User]
     breed(id: ID!): Breed
     announcement(id: ID!): Announcement
   }
