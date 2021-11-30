@@ -18,7 +18,7 @@ import {
 } from './styles';
 import Button from '../Button';
 
-const AnnouncimentCard: React.FC<Props> = ({
+const AnnouncementCard: React.FC<Props> = ({
   price,
   thumbmails,
   city,
@@ -81,4 +81,4 @@ const AnnouncimentCard: React.FC<Props> = ({
   );
 };
 
-export default AnnouncimentCard;
+export default AnnouncementCard;

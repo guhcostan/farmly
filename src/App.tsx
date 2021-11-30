@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import NavigationContainer from './navigations';
 import theme from './theme';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import HooksProvider from './hooks';
 
 const AppContainer = styled.div`
   display: flex;
@@ -16,7 +17,9 @@ const App: React.FC = () => {
   return (
     <AppContainer>
       <ThemeProvider theme={theme}>
-        <NavigationContainer />
+        <HooksProvider>
+          <NavigationContainer />
+        </HooksProvider>
       </ThemeProvider>
     </AppContainer>
   );

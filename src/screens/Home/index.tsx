@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserView } from 'react-device-detect';
+import { gql, useQuery } from '@apollo/client';
 import Banner from '../../Components/Banner';
-import AnnouncimentCard from '../../Components/AnnouncimentCard';
+import AnnouncementCard from '../../Components/AnnouncementCard';
 import { HomeContainer } from './styles';
 
 import {
@@ -16,6 +17,21 @@ const Home: React.FC = () => {
     { url: 'https://img.olx.com.br/images/78/789141929491690.jpg' },
     { url: 'https://img.olx.com.br/images/78/783152805778181.jpg' },
   ];
+  const { data, error } = useQuery(gql`
+    query getAnnouncements {
+      announcements {
+        nOx
+        breed {
+          name
+        }
+        farm {
+          city
+          state
+        }
+      }
+    }
+  `);
+  console.log('data', data);
   return (
     <BackgroundColorWidth>
       <Banner />
@@ -25,24 +41,19 @@ const Home: React.FC = () => {
         </BrowserView>
         <HomeContainer>
           <FilterTop nAnnouncements={8} />
-          <AnnouncimentCard
-            price={2000}
-            thumbmails={thumbmails}
-            nOxen={5}
-            nMonths={8}
-            city="Varginha"
-            state="MG"
-            breed="Guzerá"
-          />
-          <AnnouncimentCard
-            price={2000}
-            nMonths={8}
-            thumbmails={thumbmails}
-            nOxen={5}
-            city="Varginha"
-            state="MG"
-            breed="Guzerá"
-          />
+          {data?.announcements?.map((announcement: any) => {
+            return (
+              <AnnouncementCard
+                price={2000}
+                thumbmails={thumbmails}
+                nOxen={announcement.nOx}
+                nMonths={8}
+                city={announcement.farm?.location?.city}
+                state={announcement.farm?.location?.state}
+                breed={announcement.breed}
+              />
+            );
+          })}
         </HomeContainer>
       </Container>
     </BackgroundColorWidth>
