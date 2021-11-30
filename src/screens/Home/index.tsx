@@ -21,6 +21,8 @@ const Home: React.FC = () => {
     query getAnnouncements {
       announcements {
         nOx
+        value
+        nMonths
         breed {
           name
         }
@@ -44,10 +46,10 @@ const Home: React.FC = () => {
           {data?.announcements?.map((announcement: any) => {
             return (
               <AnnouncementCard
-                price={2000}
+                price={announcement?.value}
                 thumbmails={thumbmails}
                 nOxen={announcement.nOx}
-                nMonths={8}
+                nMonths={announcement?.nMonths}
                 city={announcement.farm?.city}
                 state={announcement.farm?.state}
                 breed={announcement.breed?.name}
