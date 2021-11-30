@@ -48,8 +48,8 @@ const Home: React.FC = () => {
                 thumbmails={thumbmails}
                 nOxen={announcement.nOx}
                 nMonths={8}
-                city={announcement.farm?.location?.city}
-                state={announcement.farm?.location?.state}
+                city={announcement.farm?.city}
+                state={announcement.farm?.state}
                 breed={announcement.breed?.name}
               />
             );
