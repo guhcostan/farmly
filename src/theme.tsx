@@ -1,5 +1,5 @@
 const theme = {
-  maxWidth: 1200,
+  maxWidth: 1250,
   colors: {
     primary: '#35462A',
     primaryLight: '#5C7427',

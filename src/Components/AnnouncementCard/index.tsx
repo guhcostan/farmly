@@ -37,26 +37,22 @@ const AnnouncementCard: React.FC<Props> = ({
         ))}
       </Carousel>
       <PropertieContainer>
-        <PropertieRow>
-          <Propertie>
-            <SiHappycow />
-            <PropertieText>{nOxen}</PropertieText>
-          </Propertie>
-          <Propertie>
-            <GiCow />
-            <PropertieText>{breed}</PropertieText>
-          </Propertie>
-        </PropertieRow>
-        <PropertieRow>
-          <Propertie>
-            <MdPlace />
-            <PropertieText>{`${city}-${state}`}</PropertieText>
-          </Propertie>
-          <Propertie>
-            <MdCalendarToday />
-            <PropertieText>{nMonths} meses</PropertieText>
-          </Propertie>
-        </PropertieRow>
+        <Propertie>
+          <SiHappycow />
+          <PropertieText>{nOxen} cabeças de gado</PropertieText>
+        </Propertie>
+        <Propertie>
+          <GiCow />
+          <PropertieText>{breed}</PropertieText>
+        </Propertie>
+        <Propertie>
+          <MdPlace />
+          <PropertieText>{`${city}-${state}`}</PropertieText>
+        </Propertie>
+        <Propertie>
+          <MdCalendarToday />
+          <PropertieText>{nMonths} meses</PropertieText>
+        </Propertie>
       </PropertieContainer>
 
       <PriceContainer

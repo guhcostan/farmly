@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  max-width: 300px;
+  max-width: 250px;
   width: 100%;
   border-radius: 10px;
   box-shadow: rgb(40 41 61 / 4%) 0px 4px 8px, rgb(96 97 112 / 16%) 0px 8px 16px;
-  margin: 10px;
+  margin: 5px;
   height: 400px;
   overflow: hidden;
   display: flex;
@@ -47,6 +47,7 @@ export const PriceMobileContainer = styled.div`
 export const PropertieContainer = styled.div`
   padding: 10px 20px;
 `;
+
 export const PropertieRow = styled.div`
   font-size: 20px;
   margin: 10px 0;
@@ -54,9 +55,11 @@ export const PropertieRow = styled.div`
   align-items: center;
   color: white;
 `;
+
 export const Propertie = styled.span`
   font-size: 20px;
-  width: 50%;
+  margin: 0px 10px;
+  width: 100%;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -64,6 +67,9 @@ export const Propertie = styled.span`
   font-family: 'Oswald', cursive;
   color: ${(props) => props.theme.colors.black};
 `;
+
 export const PropertieText = styled.span`
   margin-left: 4px;
+  flex: 1;
+  font-size: 14px;
 `;
