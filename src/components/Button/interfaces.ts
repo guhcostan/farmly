@@ -5,4 +5,5 @@ export interface Props {
   text?: string;
   className?: string;
   textMode?: boolean;
+  onClick?: () => void;
 }

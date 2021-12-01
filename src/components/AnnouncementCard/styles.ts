@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Properties from '../Properties';
 
 export const CardContainer = styled.div`
   max-width: 250px;
@@ -17,6 +18,9 @@ export const Thumbmail = styled.img`
   height: 200px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
+`;
+export const CardProperties = styled(Properties)`
+  padding: 10px 20px;
 `;
 
 export const Price = styled.span`
@@ -42,34 +46,4 @@ export const PriceMobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 20px;
-`;
-
-export const PropertieContainer = styled.div`
-  padding: 10px 20px;
-`;
-
-export const PropertieRow = styled.div`
-  font-size: 20px;
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  color: white;
-`;
-
-export const Propertie = styled.span`
-  font-size: 20px;
-  margin: 0px 10px;
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  font-family: 'Oswald', cursive;
-  color: ${(props) => props.theme.colors.black};
-`;
-
-export const PropertieText = styled.span`
-  margin-left: 4px;
-  flex: 1;
-  font-size: 14px;
 `;

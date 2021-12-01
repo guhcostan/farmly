@@ -6,6 +6,7 @@ const Button: React.FC<Props> = ({
   icon,
   text,
   textMode,
+  onClick,
   style,
   fontSize,
   className,
@@ -14,7 +15,7 @@ const Button: React.FC<Props> = ({
     <ButtonStyled
       textMode={!textMode}
       style={style}
-      padding={!icon}
+      onClick={onClick}
       className={className}
     >
       {icon}

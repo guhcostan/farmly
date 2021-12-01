@@ -32,3 +32,11 @@ export const BackgroundColorWidth = styled.div`
 export const FlexDiv = styled.div`
   display: flex;
 `;
+export const Row = styled(FlexDiv)`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const RowSpaceBetween = styled(Row)`
+  justify-content: space-between;
+`;

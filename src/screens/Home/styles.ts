@@ -6,3 +6,8 @@ export const HomeContainer = styled(Container)`
   justify-content: center;
   flex-wrap: wrap;
 `;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(208px, 1fr));
+`;

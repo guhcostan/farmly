@@ -2,7 +2,6 @@ import styled, { DefaultTheme } from 'styled-components';
 
 interface ButtonStyledProps {
   textMode: boolean;
-  padding: boolean;
   theme: DefaultTheme;
 }
 
@@ -16,7 +15,7 @@ interface TextProps {
 export const ButtonStyled = styled.div<ButtonStyledProps>`
   background-color: ${(props) =>
     props.textMode ? props.theme.colors.primary : 'transparent'};
-  padding: ${(props) => (props.padding ? '8px 12px' : '0px')};
+  padding: 8px 12px;
   border-radius: 16px;
   cursor: pointer;
   display: flex;

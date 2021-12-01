@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserView } from 'react-device-detect';
 import { gql, useQuery } from '@apollo/client';
-import Banner from '../../Components/Banner';
-import AnnouncementCard from '../../Components/AnnouncementCard';
-import { HomeContainer } from './styles';
+import Banner from '../../components/Banner';
+import AnnouncementCard from '../../components/AnnouncementCard';
+import { Grid, HomeContainer } from './styles';
 
 import {
   BackgroundColorWidth,
   Container,
 } from '../../global-styled-components';
-import FilterTop from '../../Components/FilterTop';
-import Filter from '../../Components/FilterLeft';
+import FilterTop from '../../components/FilterTop';
+import Filter from '../../components/FilterLeft';
 
 const Home: React.FC = () => {
   const thumbmails = [
@@ -20,6 +20,7 @@ const Home: React.FC = () => {
   const { data, error } = useQuery(gql`
     query getAnnouncements {
       announcements {
+        id
         nOx
         value
         nMonths
@@ -43,19 +44,22 @@ const Home: React.FC = () => {
         </BrowserView>
         <HomeContainer>
           <FilterTop nAnnouncements={8} />
-          {data?.announcements?.map((announcement: any) => {
-            return (
-              <AnnouncementCard
-                price={announcement?.value}
-                thumbmails={thumbmails}
-                nOxen={announcement.nOx}
-                nMonths={announcement?.nMonths}
-                city={announcement.farm?.city}
-                state={announcement.farm?.state}
-                breed={announcement.breed?.name}
-              />
-            );
-          })}
+          <Grid>
+            {data?.announcements?.map((announcement: any) => {
+              return (
+                <AnnouncementCard
+                  id={announcement?.id}
+                  price={announcement?.value}
+                  thumbmails={thumbmails}
+                  nOxen={announcement.nOx}
+                  nMonths={announcement?.nMonths}
+                  city={announcement.farm?.city}
+                  state={announcement.farm?.state}
+                  breed={announcement.breed?.name}
+                />
+              );
+            })}
+          </Grid>
         </HomeContainer>
       </Container>
     </BackgroundColorWidth>
