@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import Input from './components/Input';
+import Button from './components/Button';
+import InputFormik from './components/InputFormik';
 
 interface FullWidthWrapperColorProps {
   color?: string;
@@ -29,6 +32,17 @@ export const BackgroundColorWidth = styled.div`
   align-items: center;
 `;
 
+export const BackgroundColorWidthWhite = styled(BackgroundColorWidth)`
+  background-color: white;
+`;
+export const InputWithMargin = styled(Input)`
+  margin: 12px 0;
+`;
+
+export const InputFormikWithMargin = styled(InputFormik)`
+  margin: 12px 0;
+`;
+
 export const FlexDiv = styled.div`
   display: flex;
 `;
@@ -36,7 +50,25 @@ export const Row = styled(FlexDiv)`
   display: flex;
   flex-direction: row;
 `;
+export const RowCenter = styled(Row)`
+  justify-content: center;
+`;
+
+export const SquareButton = styled(Button)`
+  width: 100%;
+  border-radius: 6px;
+  height: 42px;
+`;
 
 export const RowSpaceBetween = styled(Row)`
   justify-content: space-between;
+`;
+
+export const Title = styled.span`
+  font-size: 32px;
+  font-weight: 700;
+`;
+export const Subtitle = styled.span`
+  font-size: 24px;
+  font-weight: bold;
 `;

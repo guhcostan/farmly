@@ -3,6 +3,7 @@ import { MdMenu, MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
 import { IoMdSearch } from 'react-icons/all';
 import { isMobile } from 'react-device-detect';
+import { useHistory } from 'react-router-dom';
 import {
   HeaderButton,
   HeaderButtonContainer,
@@ -13,9 +14,12 @@ import {
 import Logo from '../Logo';
 import Input from '../Input';
 import Button from '../Button';
+import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
   const theme = useTheme();
+  const history = useHistory();
+  const { login, token, user, logout } = useAuth();
   return (
     <HeaderStickContainer color="white">
       <HeaderContainer>
@@ -28,13 +32,35 @@ const Header: React.FC = () => {
         </InputContainer>
         {!isMobile ? (
           <HeaderButtonContainer>
-            <HeaderButton
-              textMode
-              icon={
-                <MdOutlineAccountCircle size={20} color={theme.colors.black} />
-              }
-              text="Entrar"
-            />
+            {!token ? (
+              <HeaderButton
+                textMode
+                icon={
+                  <MdOutlineAccountCircle
+                    size={20}
+                    color={theme.colors.black}
+                  />
+                }
+                onClick={() => {
+                  history.push('/login');
+                }}
+                text="Entrar"
+              />
+            ) : (
+              <HeaderButton
+                textMode
+                icon={
+                  <MdOutlineAccountCircle
+                    size={20}
+                    color={theme.colors.black}
+                  />
+                }
+                onClick={() => {
+                  logout();
+                }}
+                text={user?.name.split(' ')[0]}
+              />
+            )}
             <HeaderButton text="Anunciar" />
           </HeaderButtonContainer>
         ) : (

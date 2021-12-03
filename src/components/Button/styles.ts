@@ -12,15 +12,18 @@ interface TextProps {
   theme: DefaultTheme;
 }
 
-export const ButtonStyled = styled.div<ButtonStyledProps>`
+export const ButtonStyled = styled.button<ButtonStyledProps>`
   background-color: ${(props) =>
     props.textMode ? props.theme.colors.primary : 'transparent'};
-  padding: 8px 12px;
   border-radius: 16px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ButtonContainer = styled.div`
+  padding: 8px 12px;
 `;
 
 export const ButtonText = styled.span<TextProps>`

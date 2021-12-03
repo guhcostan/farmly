@@ -9,6 +9,7 @@ export const InputStyled = styled.input`
 `;
 
 export const ButtonContainer = styled.div``;
+export const Label = styled.span``;
 
 export const InputContainer = styled.div`
   border-radius: 0.25rem;
@@ -16,5 +17,11 @@ export const InputContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 2px 12px;
+  background-color: white;
   font-size: 16px;
+`;
+
+export const LabelContainer = styled.div`
+  text-align: left;
+  width: 100%;
 `;

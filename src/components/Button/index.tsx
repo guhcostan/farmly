@@ -1,6 +1,6 @@
 import React from 'react';
 import { Props } from './interfaces';
-import { ButtonStyled, ButtonText } from './styles';
+import { ButtonContainer, ButtonStyled, ButtonText } from './styles';
 
 const Button: React.FC<Props> = ({
   icon,
@@ -8,8 +8,10 @@ const Button: React.FC<Props> = ({
   textMode,
   onClick,
   style,
+  type = 'button',
   fontSize,
   className,
+  disabled,
 }) => {
   return (
     <ButtonStyled
@@ -17,13 +19,17 @@ const Button: React.FC<Props> = ({
       style={style}
       onClick={onClick}
       className={className}
+      disabled={disabled}
+      type={type}
     >
-      {icon}
-      {text && (
-        <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
-          {text}
-        </ButtonText>
-      )}
+      <ButtonContainer>
+        {icon}
+        {text && (
+          <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
+            {text}
+          </ButtonText>
+        )}
+      </ButtonContainer>
     </ButtonStyled>
   );
 };
