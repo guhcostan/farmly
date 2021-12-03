@@ -35,9 +35,10 @@ const Login: React.FC = () => {
             initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
-              login(values.email, values.password);
-              history.push('/');
-              setSubmitting(false);
+              login(values.email, values.password).then(() => {
+                setSubmitting(false);
+                history.push('/');
+              });
             }}
           >
             {({ isSubmitting }) => (
