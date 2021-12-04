@@ -49,6 +49,9 @@ const AnnouncementsInfo: React.FC = (props) => {
       query getFarm($id: ID!) {
         farm(id: $id) {
           name
+          coordinates
+          city
+          state
         }
       }
     `
@@ -80,7 +83,7 @@ const AnnouncementsInfo: React.FC = (props) => {
             state={announcement.farm?.state}
             breed={announcement.breed?.name}
           />
-          {farmData.farm && <FarmInfo farm={farmData.farm} />}
+          {farmData?.farm && <FarmInfo farm={farmData.farm} />}
         </Card>
       </Container>
     </BackgroundColorWidth>

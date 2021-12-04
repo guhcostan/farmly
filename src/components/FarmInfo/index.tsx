@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { MapContainer } from './styles';
-import { Row } from '../../global-styled-components';
+import { Row, Title } from '../../global-styled-components';
 
 interface Props {
   farm: any;
@@ -10,12 +10,11 @@ interface Props {
 const FarmInfo: React.FC<Props> = ({ farm }) => {
   const defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33,
+      lat: Number.parseFloat(farm.coordinates[0]),
+      lng: Number.parseFloat(farm.coordinates[1]),
     },
-    zoom: 11,
+    zoom: 12,
   };
-  console.log('farm', farm);
   return (
     <>
       <MapContainer>
@@ -27,7 +26,7 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
           center={defaultProps.center}
         />
       </MapContainer>
-      <Row />
+      <Title>{farm.name}</Title>
     </>
   );
 };
