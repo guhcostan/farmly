@@ -1,7 +1,6 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
 import { FilterContainer, FilterItemContainer, Label } from './styles';
-import { BackgroundColorWidth, FlexDiv } from '../../global-styled-components';
+import { FlexDiv } from '../../global-styled-components';
 import Select from '../Select';
 
 interface Props {

@@ -13,6 +13,7 @@ export const PropertieRow = styled.div`
 interface Props {
   align?: string;
 }
+
 export const Propertie = styled.span<Props>`
   font-size: 20px;
   width: 100%;

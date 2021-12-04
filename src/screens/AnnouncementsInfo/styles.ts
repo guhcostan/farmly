@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Container } from '../../global-styled-components';
 
 export const Card = styled.div`
   background-color: white;

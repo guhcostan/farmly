@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 import { MobileView } from 'react-device-detect';
-import { GiCow } from 'react-icons/gi';
-import { MdCalendarToday, MdPlace, SiHappycow } from 'react-icons/all';
 import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router-dom';
 import { Props } from './interface';
@@ -15,7 +13,6 @@ import {
   Thumbmail,
 } from './styles';
 import Button from '../Button';
-import Properties from '../Properties';
 
 const AnnouncementCard: React.FC<Props> = ({
   id,

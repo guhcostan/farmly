@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdShoppingCart } from 'react-icons/all';
 import PhotoPreview from '../PhotoPreview';
 import {
   CardProperties,
@@ -10,13 +9,14 @@ import {
   Title,
 } from './styles';
 import { Row, RowSpaceBetween } from '../../global-styled-components';
-import Properties, { Props as PropertiesProps } from '../Properties';
+import { Props as PropertiesProps } from '../Properties';
 import Button from '../Button';
 
 interface Props extends PropertiesProps {
   photos: string[];
   price: number;
 }
+
 const AnnouncementMain: React.FC<Props> = ({
   photos,
   state,

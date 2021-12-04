@@ -7,6 +7,7 @@ interface FullWidthWrapperColorProps {
   color?: string;
   image?: string;
 }
+
 export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
   width: 100%;
   display: flex;

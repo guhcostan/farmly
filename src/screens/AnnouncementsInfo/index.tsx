@@ -1,20 +1,14 @@
-import React from 'react';
-import { BrowserView } from 'react-device-detect';
-import { gql, useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import GoogleMapReact from 'google-map-react';
-import Banner from '../../components/Banner';
-import AnnouncementCard from '../../components/AnnouncementCard';
 import { Card } from './styles';
 
 import {
   BackgroundColorWidth,
   Container,
 } from '../../global-styled-components';
-import FilterTop from '../../components/FilterTop';
-import Filter from '../../components/FilterLeft';
-import PhotoPreview from '../../components/PhotoPreview';
 import AnnouncementMain from '../../components/AnnouncementMain';
+import FarmInfo from '../../components/FarmInfo';
 
 interface Params {
   id: string;
@@ -37,6 +31,7 @@ const AnnouncementsInfo: React.FC = (props) => {
             name
           }
           farm {
+            id
             city
             state
           }
@@ -49,17 +44,29 @@ const AnnouncementsInfo: React.FC = (props) => {
       },
     }
   );
+  const [loadFarm, { data: farmData }] = useLazyQuery(
+    gql`
+      query getFarm($id: ID!) {
+        farm(id: $id) {
+          name
+        }
+      }
+    `
+  );
+  useEffect(() => {
+    if (data?.announcement?.farm?.id) {
+      loadFarm({
+        variables: {
+          id: data.announcement.farm.id,
+        },
+      });
+    }
+  }, [data?.announcement?.farm?.id, loadFarm]);
+
   if (!data) {
     return <div />;
   }
   const { announcement } = data;
-  const defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33,
-    },
-    zoom: 11,
-  };
   return (
     <BackgroundColorWidth>
       <Container style={{ display: 'flex' }}>
@@ -73,15 +80,7 @@ const AnnouncementsInfo: React.FC = (props) => {
             state={announcement.farm?.state}
             breed={announcement.breed?.name}
           />
-          <div style={{ width: '100%', height: 200 }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{
-                key: 'AIzaSyAD-eJLqOMuPDFN27OQI2YLYO1ZIiWMmAU',
-              }}
-              zoom={defaultProps.zoom}
-              center={defaultProps.center}
-            />
-          </div>
+          {farmData.farm && <FarmInfo farm={farmData.farm} />}
         </Card>
       </Container>
     </BackgroundColorWidth>

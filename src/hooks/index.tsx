@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-} from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import client from '../clients/apollo';
 import { AuthProvider } from './auth';
 
