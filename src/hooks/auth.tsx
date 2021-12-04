@@ -13,7 +13,13 @@ interface User {
 
 interface AuthContextData {
   token: string;
-  login: (email: any, password: any) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  signUp: (
+    email: string,
+    password: string,
+    name: string,
+    cpf: string
+  ) => Promise<void>;
   logout: () => void;
   user?: User;
 }
@@ -26,6 +32,13 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loginQuery] = useMutation(gql`
     mutation login($user: LoginInput) {
       login(user: $user) {
+        token
+      }
+    }
+  `);
+  const [signUpQuery] = useMutation(gql`
+    mutation signup($user: UserInput) {
+      signup(user: $user) {
         token
       }
     }
@@ -54,6 +67,24 @@ const AuthProvider: React.FC = ({ children }) => {
     [loginQuery]
   );
 
+  const signUp = useCallback(
+    async (email, password, name, cpf) => {
+      const r = await signUpQuery({
+        variables: {
+          user: {
+            email,
+            password,
+            name,
+            cpf,
+          },
+        },
+      });
+      setToken(r.data.signup.token);
+      localStorage.setItem('token', r.data.signup.token);
+    },
+    [signUpQuery]
+  );
+
   const logout = useCallback(() => {
     setToken('');
     localStorage.removeItem('token');
@@ -77,7 +108,9 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ token, login, user: data?.self, logout }}>
+    <AuthContext.Provider
+      value={{ token, login, user: data?.self, logout, signUp }}
+    >
       {children}
     </AuthContext.Provider>
   );
