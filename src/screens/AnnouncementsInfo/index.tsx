@@ -25,6 +25,8 @@ const AnnouncementsInfo: React.FC = (props) => {
       query getAnnouncements($id: ID!) {
         announcement(id: $id) {
           nOx
+          title
+          description
           value
           nMonths
           breed {
@@ -82,6 +84,8 @@ const AnnouncementsInfo: React.FC = (props) => {
             price={announcement.value}
             state={announcement.farm?.state}
             breed={announcement.breed?.name}
+            title={announcement.title}
+            description={announcement.description}
           />
           {farmData?.farm && <FarmInfo farm={farmData.farm} />}
         </Card>

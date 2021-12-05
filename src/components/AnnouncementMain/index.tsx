@@ -15,6 +15,8 @@ import Button from '../Button';
 interface Props extends PropertiesProps {
   photos: string[];
   price: number;
+  title: string;
+  description: string;
 }
 
 const AnnouncementMain: React.FC<Props> = ({
@@ -25,12 +27,14 @@ const AnnouncementMain: React.FC<Props> = ({
   price,
   nMonths,
   nOxen,
+  title,
+  description,
 }) => {
   return (
     <Row>
       <PhotoPreview photosUrls={photos} />
       <Data>
-        <Title>Vendo bois</Title>
+        <Title>{title}</Title>
         <RowSpaceBetween>
           <Price>
             R$ {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
@@ -45,10 +49,7 @@ const AnnouncementMain: React.FC<Props> = ({
           nMonths={nMonths}
           nOxen={nOxen}
         />
-        <Description>
-          Tenho varios bois na minha fazenda, se vocês quiserem, posso vender
-          alguns para vocês
-        </Description>
+        <Description>{description}</Description>
       </Data>
     </Row>
   );
