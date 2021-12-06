@@ -61,7 +61,16 @@ const Header: React.FC = () => {
                 text={user?.name.split(' ')[0]}
               />
             )}
-            <HeaderButton text="Anunciar" />
+            <HeaderButton
+              onClick={() => {
+                if (user) {
+                  history.push('/newAnnouncement');
+                } else {
+                  history.push('/login');
+                }
+              }}
+              text="Anunciar"
+            />
           </HeaderButtonContainer>
         ) : (
           <Button

@@ -13,10 +13,14 @@ interface TextProps {
 }
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`
-  background-color: ${(props) =>
-    props.textMode ? props.theme.colors.primary : 'transparent'};
+  background-color: ${(props) => {
+    if (props.disabled) {
+      return 'gray';
+    }
+    return props.textMode ? props.theme.colors.primary : 'transparent';
+  }};
   border-radius: 16px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
   display: flex;
   justify-content: center;
   align-items: center;

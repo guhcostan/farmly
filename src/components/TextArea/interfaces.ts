@@ -7,8 +7,4 @@ export interface Props {
   className?: string;
   onChange?: () => void;
   onBlur?: () => void;
-  bordless?: boolean;
-  fontSize?: number;
-  mask?: any;
-  prefix?: string;
 }

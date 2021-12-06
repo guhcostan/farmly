@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 
@@ -13,13 +13,18 @@ export const Thumbmail = styled.img`
 `;
 
 const PhotoPreview: React.FC<Props> = ({ photosUrls }) => {
-  return (
-    <Carousel showThumbs={false} showStatus={false} width={600}>
-      {photosUrls.map((url) => (
-        <Thumbmail src={url} alt="" />
-      ))}
-    </Carousel>
-  );
+  const renderPhotos = useCallback(() => {
+    return (
+      <div style={{ minWidth: 600, minHeight: 400 }}>
+        <Carousel showThumbs={false} showStatus={false} width={600}>
+          {photosUrls.map((url) => (
+            <Thumbmail src={url} alt="" />
+          ))}
+        </Carousel>
+      </div>
+    );
+  }, [photosUrls]);
+  return renderPhotos();
 };
 
 export default PhotoPreview;
