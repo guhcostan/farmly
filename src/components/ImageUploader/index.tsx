@@ -4,12 +4,12 @@
 import React from 'react';
 import ImageUploading from 'react-images-uploading';
 import PhotoPreview from "../PhotoPreview";
-import {MdRemove} from "react-icons/all";
-import {Row} from "../../global-styled-components";
+import {MdAdd, MdRemove} from "react-icons/all";
+import {Row, FlexCenter, ImageContainer} from "../../global-styled-components";
+import {DragAndDropButton} from "./styles";
 
 const ImageUploader: React.FC = () => {
   const [images, setImages] = React.useState([]);
-  console.log('images',images)
   const onChange = (value) => {
     setImages(value)
   }
@@ -24,33 +24,30 @@ const ImageUploader: React.FC = () => {
       {({
         imageList,
         onImageUpload,
-        onImageRemoveAll,
-        onImageUpdate,
         onImageRemove,
         isDragging,
         dragProps,
       }) => (
-        <div className="upload__image-wrapper">
-          <PhotoPreview photosUrls={images.map(i => i.data_url)}/>
-          <button
-            style={isDragging ? { color: 'red' } : undefined}
+        <FlexCenter >
+          <Row>
+          {imageList.map((image, index) => (
+              <ImageContainer key={index} className="image-item" url={image.data_url}>
+                <button onClick={() => onImageRemove(index)} type="button">
+                  <MdRemove size={20} style={{background: 'red', borderRadius: 30, position: "absolute", top: 4, right: 4, zIndex: 1000}}/>
+                </button>
+              </ImageContainer>
+          ))}
+          </Row>
+          <DragAndDropButton
+            className="upload__image-wrapper"
+            style={isDragging ? { color: 'white' } : undefined}
             onClick={onImageUpload}
             type="button"
             {...dragProps}
           >
-            Enviar nova imagem
-          </button>
-          <Row>
-          {imageList.map((image, index) => (
-            <div key={index} className="image-item" style={{position: "relative"}}>
-              <img src={image.data_url} alt="" width="100" />
-                <button onClick={() => onImageRemove(index)} type="button">
-                  <MdRemove size={20} style={{background: 'red', borderRadius: 30, position: "absolute", top: 4, right: 4}}/>
-                </button>
-            </div>
-          ))}
-          </Row>
-        </div>
+            <div>Adicionar imagem</div><MdAdd size={20}/>
+          </DragAndDropButton>
+        </FlexCenter>
       )}
     </ImageUploading>
   );

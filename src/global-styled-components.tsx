@@ -47,6 +47,23 @@ export const InputFormikWithMargin = styled(InputFormik)`
 export const FlexDiv = styled.div`
   display: flex;
 `;
+
+interface ImageProp {
+  url: string;
+}
+export const ImageContainer = styled.image<ImageProp>`
+  position: relative;
+  background-image: url(${(props) => props.url});
+  width: 200px;
+  height: 150px;
+  background-position: center;
+  background-size: cover;
+`;
+export const FlexCenter = styled(FlexDiv)`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const Row = styled(FlexDiv)`
   display: flex;
   flex-direction: row;

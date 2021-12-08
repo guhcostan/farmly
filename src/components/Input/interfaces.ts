@@ -1,3 +1,5 @@
+import React, { ChangeEventHandler } from 'react';
+
 export interface Props {
   label?: string;
   placeholder?: string;
@@ -5,8 +7,8 @@ export interface Props {
   type?: string;
   name?: string;
   className?: string;
-  onChange?: () => void;
-  onBlur?: () => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   bordless?: boolean;
   fontSize?: number;
   mask?: any;

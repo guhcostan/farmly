@@ -26,25 +26,19 @@ const AnnouncementForm: React.FC = () => {
         photos: [],
         title: '',
         description: '',
-        value: '',
+        value: 0,
       }}
       onSubmit={() => {
         console.log('SUBMIT');
       }}
     >
       {({ isSubmitting, values }) => (
-        <Row>
+        <div>
           <ImageUploader />
           <Data>
-            <InputFormik
-              placeholder="Titulo"
-              name="title"
-              bordless
-              fontSize={40}
-            />
+            <InputFormik placeholder="Titulo" name="title" />
             <InputFormikWithMargin
               type="textarea"
-              bordless
               placeholder="Descrição"
               name="description"
             />
@@ -52,9 +46,7 @@ const AnnouncementForm: React.FC = () => {
               placeholder="Valor"
               name="value"
               prefix="R$"
-              type="number"
-              bordless
-              fontSize={50}
+              type="currency"
             />
             {/* <CardProperties */}
             {/*    align="left" */}
@@ -66,7 +58,7 @@ const AnnouncementForm: React.FC = () => {
             {/* /> */}
             <Description />
           </Data>
-        </Row>
+        </div>
       )}
     </Formik>
   );

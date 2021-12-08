@@ -27,11 +27,34 @@ const Input: React.FC<Props> = ({
   const getInput = useCallback(() => {
     if (type === 'textarea') {
       return (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         <TextAreaStyled
           name={name}
           onBlur={onBlur}
           fontSize={fontSize}
           onChange={onChange}
+          placeholder={placeholder}
+        />
+      );
+    }
+    if (type === 'currency') {
+      return (
+        <InputStyled
+          name={name}
+          fontSize={fontSize}
+          type="number"
+          onChange={(e) => {
+            if (onChange) {
+              onChange(e);
+            }
+          }}
+          onBlur={(e) => {
+            e.target.value = Number.parseFloat(e.target.value).toFixed(2);
+            if (onBlur) {
+              onBlur(e);
+            }
+          }}
           placeholder={placeholder}
         />
       );
