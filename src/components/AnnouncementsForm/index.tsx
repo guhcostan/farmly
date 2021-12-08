@@ -13,13 +13,19 @@ import {
   InputFormikWithMargin,
   Row,
   RowSpaceBetween,
+  SelectorWithMargin,
 } from '../../global-styled-components';
 import { Props as PropertiesProps } from '../Properties';
 import Button from '../Button';
 import ImageUploader from '../ImageUploader';
 import InputFormik from '../InputFormik';
+import Selector from '../Selector';
 
-const AnnouncementForm: React.FC = () => {
+interface Props {
+  farms: any[];
+}
+
+const AnnouncementForm: React.FC<Props> = ({ farms }) => {
   return (
     <Formik
       initialValues={{
@@ -34,6 +40,7 @@ const AnnouncementForm: React.FC = () => {
     >
       {({ isSubmitting, values }) => (
         <div>
+          <Title>Criar anuncio</Title>
           <ImageUploader />
           <Data>
             <InputFormik placeholder="Titulo" name="title" />
@@ -47,6 +54,15 @@ const AnnouncementForm: React.FC = () => {
               name="value"
               prefix="R$"
               type="currency"
+            />
+            <SelectorWithMargin
+              placeholder="Selecione a fazenda do anuncio"
+              options={[
+                {
+                  label: 'Fazenda 1',
+                  value: 'fazenda 1',
+                },
+              ]}
             />
             {/* <CardProperties */}
             {/*    align="left" */}

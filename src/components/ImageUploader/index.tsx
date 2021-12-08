@@ -29,7 +29,11 @@ const ImageUploader: React.FC = () => {
         dragProps,
       }) => (
         <FlexCenter >
-          <Row>
+          <div style={{
+            overflow: 'auto',
+            whiteSpace: 'nowrap',
+            width: '90%'
+          }} >
           {imageList.map((image, index) => (
               <ImageContainer key={index} className="image-item" url={image.data_url}>
                 <button onClick={() => onImageRemove(index)} type="button">
@@ -37,7 +41,7 @@ const ImageUploader: React.FC = () => {
                 </button>
               </ImageContainer>
           ))}
-          </Row>
+          </div>
           <DragAndDropButton
             className="upload__image-wrapper"
             style={isDragging ? { color: 'white' } : undefined}

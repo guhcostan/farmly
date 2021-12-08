@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Input from './components/Input';
 import Button from './components/Button';
 import InputFormik from './components/InputFormik';
+import Selector from './components/Selector';
 
 interface FullWidthWrapperColorProps {
   color?: string;
@@ -44,6 +45,10 @@ export const InputFormikWithMargin = styled(InputFormik)`
   margin: 12px 0;
 `;
 
+export const SelectorWithMargin = styled(Selector)`
+  margin: 12px 0;
+`;
+
 export const FlexDiv = styled.div`
   display: flex;
 `;
@@ -53,9 +58,11 @@ interface ImageProp {
 }
 export const ImageContainer = styled.image<ImageProp>`
   position: relative;
+  display: inline-block;
   background-image: url(${(props) => props.url});
   width: 200px;
   height: 150px;
+  margin: 0 10px;
   background-position: center;
   background-size: cover;
 `;

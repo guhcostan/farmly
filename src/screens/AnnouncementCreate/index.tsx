@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { gql, useQuery } from '@apollo/client';
 import {
   BackgroundColorWidth,
   Container,
@@ -8,11 +9,21 @@ import AnnouncementForm from '../../components/AnnouncementsForm';
 import { Card } from '../AnnouncementsInfo/styles';
 
 const AnnouncementCreate: React.FC = () => {
+  const { data } = useQuery(gql`
+    {
+      self {
+        farms {
+          id
+          name
+        }
+      }
+    }
+  `);
   return (
     <BackgroundColorWidth>
       <Container style={{ display: 'flex' }}>
         <Card>
-          <AnnouncementForm />
+          <AnnouncementForm farms={data?.self?.farms} />
         </Card>
       </Container>
     </BackgroundColorWidth>
