@@ -1,22 +1,19 @@
 import React from 'react';
 import { MdArrowDropDown, MdChevronLeft } from 'react-icons/all';
 import { SelectContainer, SelectInput } from './styles';
+import { Props } from './interfaces';
 
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface Props {
-  options: Option[];
-  placeholder: string;
-  // eslint-disable-next-line react/require-default-props
-  className?: string;
-}
-const Selector: React.FC<Props> = ({ options, placeholder, className }) => {
+const Selector: React.FC<Props> = ({
+  options,
+  placeholder,
+  className,
+  onChange,
+  onBlur,
+  name,
+}) => {
   return (
     <SelectContainer className={className}>
-      <SelectInput name="select">
+      <SelectInput onChange={onChange} onBlur={onBlur} name={name}>
         <option style={{ color: 'gray' }} value="" disabled selected>
           {placeholder}
         </option>

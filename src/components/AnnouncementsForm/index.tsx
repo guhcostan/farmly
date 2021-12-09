@@ -1,5 +1,7 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
+import { gql, useMutation } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import PhotoPreview from '../PhotoPreview';
 import {
   CardProperties,
@@ -13,7 +15,9 @@ import {
   InputFormikWithMargin,
   Row,
   RowSpaceBetween,
+  SelectorFormikWithMargin,
   SelectorWithMargin,
+  SquareButton,
 } from '../../global-styled-components';
 import { Props as PropertiesProps } from '../Properties';
 import Button from '../Button';
@@ -23,58 +27,102 @@ import Selector from '../Selector';
 
 interface Props {
   farms: any[];
+  breeds: any[];
 }
 
-const AnnouncementForm: React.FC<Props> = ({ farms }) => {
+const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
+  const [createAnnouncement] = useMutation(gql`
+    mutation createAnnouncement($announcement: AnnouncementInput) {
+      createAnnouncement(announcement: $announcement) {
+        id
+      }
+    }
+  `);
+  const history = useHistory();
   return (
     <Formik
       initialValues={{
         photos: [],
         title: '',
         description: '',
+        nOx: '',
+        nMonths: '',
+        breedId: '',
+        farmId: '',
         value: 0,
       }}
-      onSubmit={() => {
-        console.log('SUBMIT');
+      onSubmit={(announcement, { setSubmitting }) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { photos, ...rest } = announcement;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        createAnnouncement({
+          variables: {
+            announcement: rest,
+          },
+        })
+          .then(({ data }) => {
+            history.push(`/announcement/${data?.createAnnouncement?.id}`);
+          })
+          .finally(() => {
+            setSubmitting(false);
+          });
       }}
     >
       {({ isSubmitting, values }) => (
-        <div>
+        <Form>
           <Title>Criar anuncio</Title>
           <ImageUploader />
           <Data>
-            <InputFormik placeholder="Titulo" name="title" />
+            <InputFormikWithMargin placeholder="Titulo" name="title" />
             <InputFormikWithMargin
               type="textarea"
               placeholder="Descrição"
               name="description"
             />
-            <InputFormik
+            <InputFormikWithMargin
               placeholder="Valor"
               name="value"
               prefix="R$"
               type="currency"
             />
-            <SelectorWithMargin
-              placeholder="Selecione a fazenda do anuncio"
-              options={[
-                {
-                  label: 'Fazenda 1',
-                  value: 'fazenda 1',
-                },
-              ]}
+            <InputFormikWithMargin
+              placeholder="Numero de bois"
+              name="nOx"
+              type="number"
             />
-            {/* <CardProperties */}
-            {/*    align="left" */}
-            {/*    state={state} */}
-            {/*    breed={breed} */}
-            {/*    city={city} */}
-            {/*    nMonths={nMonths} */}
-            {/*    nOxen={nOxen} */}
-            {/* /> */}
-            <Description />
+            <InputFormikWithMargin
+              placeholder="Quantos meses tem o gado?"
+              name="nMonths"
+              type="number"
+            />
+            <SelectorFormikWithMargin
+              placeholder="Qual as raças dos bois?"
+              name="breedId"
+              options={
+                breeds?.map((breed) => ({
+                  value: breed.id,
+                  label: breed.name,
+                })) || []
+              }
+            />
+            <SelectorFormikWithMargin
+              placeholder="Selecione a fazenda do anuncio"
+              name="farmId"
+              options={
+                farms?.map((breed) => ({
+                  value: breed.id,
+                  label: breed.name,
+                })) || []
+              }
+            />
+            <SquareButton
+              type="submit"
+              text="Publicar anuncio"
+              disabled={isSubmitting}
+            />
           </Data>
-        </div>
+        </Form>
       )}
     </Formik>
   );

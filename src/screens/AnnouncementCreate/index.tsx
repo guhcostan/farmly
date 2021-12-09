@@ -19,11 +19,22 @@ const AnnouncementCreate: React.FC = () => {
       }
     }
   `);
+  const { data: beedData } = useQuery(gql`
+    {
+      breeds {
+        id
+        name
+      }
+    }
+  `);
   return (
     <BackgroundColorWidth>
       <Container style={{ display: 'flex' }}>
         <Card>
-          <AnnouncementForm farms={data?.self?.farms} />
+          <AnnouncementForm
+            breeds={beedData?.breeds}
+            farms={data?.self?.farms}
+          />
         </Card>
       </Container>
     </BackgroundColorWidth>

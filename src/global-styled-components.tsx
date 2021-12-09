@@ -3,6 +3,7 @@ import Input from './components/Input';
 import Button from './components/Button';
 import InputFormik from './components/InputFormik';
 import Selector from './components/Selector';
+import SelectorFormik from './components/SelectorFormik';
 
 interface FullWidthWrapperColorProps {
   color?: string;
@@ -38,15 +39,19 @@ export const BackgroundColorWidthWhite = styled(BackgroundColorWidth)`
   background-color: white;
 `;
 export const InputWithMargin = styled(Input)`
-  margin: 12px 0;
+  margin: 8px 0;
 `;
 
 export const InputFormikWithMargin = styled(InputFormik)`
-  margin: 12px 0;
+  margin: 8px 0;
 `;
 
 export const SelectorWithMargin = styled(Selector)`
-  margin: 12px 0;
+  margin: 8px 0;
+`;
+
+export const SelectorFormikWithMargin = styled(SelectorFormik)`
+  margin: 8px 0;
 `;
 
 export const FlexDiv = styled.div`

@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
+import client from '../clients/apollo';
 
 interface User {
   name: string;
@@ -43,7 +44,7 @@ const AuthProvider: React.FC = ({ children }) => {
       }
     }
   `);
-  const [getUser, { data }] = useLazyQuery(gql`
+  const [getUser, { data, refetch }] = useLazyQuery(gql`
     {
       self {
         name
@@ -87,6 +88,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const logout = useCallback(() => {
     setToken('');
+    client.resetStore();
     localStorage.removeItem('token');
   }, []);
 
