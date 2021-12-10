@@ -11,6 +11,8 @@ import {
   Title,
 } from '../../global-styled-components';
 import { useAuth } from '../../hooks/auth';
+import registerSchema from '../../formValidations/register';
+import loginSchema from '../../formValidations/login';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -28,6 +30,7 @@ const Login: React.FC = () => {
                 history.push('/');
               });
             }}
+            validationSchema={loginSchema}
           >
             {({ isSubmitting }) => (
               <Form>
@@ -72,6 +75,7 @@ const Login: React.FC = () => {
                 history.push('/');
               });
             }}
+            validationSchema={registerSchema}
             validateOnChange={false}
           >
             {({ isSubmitting }) => (
@@ -89,7 +93,11 @@ const Login: React.FC = () => {
                   name="passwordConfirmation"
                   placeholder="Confirme sua senha"
                 />
-                <InputFormikWithMargin placeholder="CPF" name="cpf" />
+                <InputFormikWithMargin
+                  placeholder="CPF"
+                  name="cpf"
+                  mask="999.999.999-99"
+                />
                 <SquareButton
                   text="Criar coonnta"
                   type="submit"

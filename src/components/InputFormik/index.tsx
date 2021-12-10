@@ -10,11 +10,12 @@ const InputFormik: React.FC<Props> = ({ name = '', ...props }) => {
   const [field, meta] = useField({ name });
 
   return (
-    <Input {...field} {...props}>
+    <>
+      <Input {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </Input>
+    </>
   );
 };
 
