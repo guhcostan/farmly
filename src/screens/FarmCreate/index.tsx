@@ -7,34 +7,16 @@ import {
 } from '../../global-styled-components';
 import AnnouncementForm from '../../components/AnnouncementsForm';
 import { Card } from '../AnnouncementsInfo/styles';
+import FarmForm from '../../components/FarmForm';
+import { useAuth } from '../../hooks/auth';
 
 const AnnouncementCreate: React.FC = () => {
-  const { data } = useQuery(gql`
-    query getFarms {
-      self {
-        farms {
-          id
-          name
-        }
-      }
-    }
-  `);
-  const { data: beedData } = useQuery(gql`
-    {
-      breeds {
-        id
-        name
-      }
-    }
-  `);
+  const { user } = useAuth();
   return (
     <BackgroundColorWidth>
       <Container style={{ display: 'flex' }}>
         <Card>
-          <AnnouncementForm
-            breeds={beedData?.breeds}
-            farms={data?.self?.farms}
-          />
+          <FarmForm user={user} />
         </Card>
       </Container>
     </BackgroundColorWidth>

@@ -10,10 +10,16 @@ const Selector: React.FC<Props> = ({
   onChange,
   onBlur,
   name,
+  value,
 }) => {
   return (
     <SelectContainer className={className}>
-      <SelectInput onChange={onChange} onBlur={onBlur} name={name}>
+      <SelectInput
+        onChange={onChange}
+        onBlur={onBlur}
+        name={name}
+        value={value}
+      >
         <option style={{ color: 'gray' }} value="" disabled selected>
           {placeholder}
         </option>

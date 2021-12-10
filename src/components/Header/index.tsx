@@ -20,7 +20,6 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const history = useHistory();
   const { login, token, user, logout } = useAuth();
-  console.log('user', user);
   return (
     <HeaderStickContainer color="white">
       <HeaderContainer>
@@ -64,7 +63,6 @@ const Header: React.FC = () => {
             )}
             <HeaderButton
               onClick={() => {
-                console.log('user', user);
                 if (user) {
                   history.push('/newAnnouncement');
                 } else {

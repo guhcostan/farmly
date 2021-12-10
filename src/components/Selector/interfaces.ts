@@ -8,6 +8,8 @@ export interface Props {
   name?: string;
   placeholder: string;
   className?: string;
+  value?: string;
   onChange?: () => void;
+  onSelect?: () => void;
   onBlur?: () => void;
 }

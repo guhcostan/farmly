@@ -72,8 +72,29 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
       {({ isSubmitting, values }) => (
         <Form>
           <Title>Criar anuncio</Title>
-          <ImageUploader />
           <Data>
+            <SelectorFormikWithMargin
+              placeholder="Selecione a fazenda do anuncio"
+              name="farmId"
+              /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+              // @ts-ignore
+              onChange={(event: any) => {
+                if (event.target.value === 'addFarm') {
+                  history.push('newFarm');
+                }
+              }}
+              options={[
+                ...(farms?.map((breed) => ({
+                  value: breed.id,
+                  label: breed.name,
+                })) || []),
+                {
+                  value: 'addFarm',
+                  label: 'Cadastrar nova fazenda +',
+                },
+              ]}
+            />
+            <ImageUploader />
             <InputFormikWithMargin placeholder="Titulo" name="title" />
             <InputFormikWithMargin
               type="textarea"
@@ -101,16 +122,6 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
               name="breedId"
               options={
                 breeds?.map((breed) => ({
-                  value: breed.id,
-                  label: breed.name,
-                })) || []
-              }
-            />
-            <SelectorFormikWithMargin
-              placeholder="Selecione a fazenda do anuncio"
-              name="farmId"
-              options={
-                farms?.map((breed) => ({
                   value: breed.id,
                   label: breed.name,
                 })) || []

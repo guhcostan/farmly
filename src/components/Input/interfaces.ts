@@ -13,4 +13,5 @@ export interface Props {
   fontSize?: number;
   mask?: any;
   prefix?: string;
+  value?: string;
 }

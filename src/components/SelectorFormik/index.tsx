@@ -11,7 +11,16 @@ const SelectorFormik: React.FC<Props> = ({ name = '', ...props }) => {
   const [field, meta] = useField({ name });
 
   return (
-    <Selector {...field} {...props}>
+    <Selector
+      {...field}
+      {...props}
+      onChange={(e) => {
+        if (props?.onChange) {
+          props?.onChange(e);
+        }
+        field.onChange(e);
+      }}
+    >
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}

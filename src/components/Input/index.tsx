@@ -10,28 +10,34 @@ import {
 } from './styles';
 import { Props } from './interfaces';
 
-const Input: React.FC<Props> = ({
-  placeholder,
-  button,
-  label,
-  type,
-  fontSize,
-  className,
-  onBlur,
-  onChange,
-  name,
-  bordless,
-  prefix,
-  mask,
-}) => {
+const Input: React.FC<Props> = (
+  {
+    placeholder,
+    button,
+    label,
+    type,
+    fontSize,
+    className,
+    onBlur,
+    onChange,
+    name,
+    bordless,
+    prefix,
+    mask,
+    value,
+  },
+  ref
+) => {
   const getInput = useCallback(() => {
     if (type === 'textarea') {
       return (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <TextAreaStyled
+          ref={ref}
           name={name}
           onBlur={onBlur}
+          value={value}
           fontSize={fontSize}
           onChange={onChange}
           placeholder={placeholder}
@@ -41,7 +47,9 @@ const Input: React.FC<Props> = ({
     if (type === 'currency') {
       return (
         <InputStyled
+          ref={ref}
           name={name}
+          value={value}
           fontSize={fontSize}
           type="number"
           onChange={(e) => {
@@ -64,6 +72,8 @@ const Input: React.FC<Props> = ({
         name={name}
         onBlur={onBlur}
         onChange={onChange}
+        ref={ref}
+        value={value}
         fontSize={fontSize}
         placeholder={placeholder}
         type={type}
@@ -71,6 +81,8 @@ const Input: React.FC<Props> = ({
     ) : (
       <InputStyledMask
         name={name}
+        ref={ref}
+        value={value}
         mask={mask}
         fontSize={fontSize}
         onBlur={onBlur}
@@ -79,7 +91,7 @@ const Input: React.FC<Props> = ({
         type={type}
       />
     );
-  }, [fontSize, mask, name, onBlur, onChange, placeholder, type]);
+  }, [fontSize, mask, name, onBlur, onChange, placeholder, ref, type, value]);
   return (
     <LabelContainer className={className}>
       <Label>{label}</Label>
@@ -92,4 +104,6 @@ const Input: React.FC<Props> = ({
   );
 };
 
-export default Input;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default React.forwardRef(Input);

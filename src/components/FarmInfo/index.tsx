@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { MapContainer } from './styles';
 import { Row, Title } from '../../global-styled-components';
+import SearchBox from '../SearchBox';
 
 interface Props {
   farm: any;
@@ -20,7 +21,7 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
       <MapContainer>
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: 'AIzaSyAD-eJLqOMuPDFN27OQI2YLYO1ZIiWMmAU',
+            key: 'AIzaSyAsJ4fmNN1UV7XbFfd8BUMwt3-PagFRCtE',
           }}
           zoom={defaultProps.zoom}
           center={defaultProps.center}

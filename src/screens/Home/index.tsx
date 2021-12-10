@@ -34,7 +34,6 @@ const Home: React.FC = () => {
       }
     }
   `);
-  console.log('data', data);
   return (
     <BackgroundColorWidth>
       <Banner />
