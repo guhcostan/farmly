@@ -115,7 +115,9 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
-    Firebase.indentify(data?.self);
+    if (data?.self) {
+      Firebase.indentify(data?.self);
+    }
   }, [data?.self]);
 
   return (
