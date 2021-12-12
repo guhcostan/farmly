@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import client from '../clients/apollo';
+import Firebase from '../utils/Firebase';
 
 interface User {
   name: string;
@@ -63,6 +64,7 @@ const AuthProvider: React.FC = ({ children }) => {
         },
       });
       setToken(r.data.login.token);
+      Firebase.login(email);
       localStorage.setItem('token', r.data.login.token);
     },
     [loginQuery]
@@ -80,6 +82,7 @@ const AuthProvider: React.FC = ({ children }) => {
           },
         },
       });
+      Firebase.signin(email);
       setToken(r.data.signup.token);
       localStorage.setItem('token', r.data.signup.token);
     },
@@ -108,6 +111,10 @@ const AuthProvider: React.FC = ({ children }) => {
     getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
+
+  useEffect(() => {
+    Firebase.indentify(data?.self);
+  }, [data?.self]);
 
   return (
     <AuthContext.Provider
