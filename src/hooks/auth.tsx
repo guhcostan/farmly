@@ -48,7 +48,9 @@ const AuthProvider: React.FC = ({ children }) => {
   const [getUser, { data, refetch }] = useLazyQuery(gql`
     {
       self {
+        id
         name
+        email
       }
     }
   `);

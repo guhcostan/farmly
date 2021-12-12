@@ -40,7 +40,8 @@ class Firebase {
 
   static indentify(user: any) {
     setUserProperties(this.analytics, user);
-    mixpanel.register(user);
+    mixpanel.identify(user.id);
+    mixpanel.people.set(user);
   }
 
   static login(email: string) {
