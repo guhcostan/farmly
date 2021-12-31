@@ -1,4 +1,8 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import useDimensions from 'react-use-dimensions';
 import PhotoPreview from '../PhotoPreview';
 import {
   CardProperties,
@@ -19,6 +23,13 @@ interface Props extends PropertiesProps {
   description: string;
 }
 
+const Wrapper: React.FC = ({ children }) => {
+  const [ref, { x, y, width }] = useDimensions();
+  if (width < 1000) {
+    return <div ref={ref}>{children}</div>;
+  }
+  return <Row ref={ref}>{children}</Row>;
+};
 const AnnouncementMain: React.FC<Props> = ({
   photos,
   state,
@@ -31,7 +42,7 @@ const AnnouncementMain: React.FC<Props> = ({
   description,
 }) => {
   return (
-    <Row>
+    <Wrapper>
       <PhotoPreview photosUrls={photos} />
       <Data>
         <Title>{title}</Title>
@@ -39,7 +50,9 @@ const AnnouncementMain: React.FC<Props> = ({
           <Price>
             R$ {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
           </Price>
-          <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+          {!isMobile && (
+            <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+          )}
         </RowSpaceBetween>
         <CardProperties
           align="left"
@@ -50,8 +63,11 @@ const AnnouncementMain: React.FC<Props> = ({
           nOxen={nOxen}
         />
         <Description>{description}</Description>
+        {isMobile && (
+          <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+        )}
       </Data>
-    </Row>
+    </Wrapper>
   );
 };
 
