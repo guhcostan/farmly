@@ -33,6 +33,7 @@ import ImageUploader from '../ImageUploader';
 import InputFormik from '../InputFormik';
 import Selector from '../Selector';
 import SearchBox from '../SearchBox';
+import announcementSchema from '../../formValidations/farmSchema';
 
 interface Props {
   user: any;
@@ -93,8 +94,15 @@ const FarmForm: React.FC<Props> = ({ user }) => {
         city: '',
         state: '',
       }}
+      validationSchema={announcementSchema}
+      validateOnChange={false}
       innerRef={formRef}
       onSubmit={(values, { setSubmitting }) => {
+        if (coordinates.lat === 0) {
+          alert('Selecione uma localização no mapa para cadastrar sua fazenda');
+          setSubmitting(false);
+          return;
+        }
         const farm = {
           userId: user?.id,
           coordinates: [`${coordinates?.lat}`, `${coordinates?.lng}`],
