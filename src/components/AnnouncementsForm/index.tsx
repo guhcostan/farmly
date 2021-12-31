@@ -24,6 +24,7 @@ import Button from '../Button';
 import ImageUploader from '../ImageUploader';
 import InputFormik from '../InputFormik';
 import Selector from '../Selector';
+import announcementSchema from '../../formValidations/announcement';
 
 interface Props {
   farms: any[];
@@ -51,6 +52,8 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
         farmId: '',
         value: 0,
       }}
+      validateOnChange={false}
+      validationSchema={announcementSchema}
       onSubmit={(announcement, { setSubmitting }) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { photos, ...rest } = announcement;
