@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserView } from 'react-device-detect';
+import { BrowserView, isMobile } from 'react-device-detect';
 import { gql, useQuery } from '@apollo/client';
 import Banner from '../../components/Banner';
 import AnnouncementCard from '../../components/AnnouncementCard';
@@ -12,11 +12,19 @@ import {
 import FilterTop from '../../components/FilterTop';
 import Filter from '../../components/FilterLeft';
 
+const GridMobile: React.FC = ({ children }) => {
+  if (isMobile) {
+    return <div>{children}</div>;
+  }
+  return <Grid>{children}</Grid>;
+};
+
 const Home: React.FC = () => {
   const thumbmails = [
     { url: 'https://img.olx.com.br/images/78/789141929491690.jpg' },
     { url: 'https://img.olx.com.br/images/78/783152805778181.jpg' },
   ];
+
   const { data, error } = useQuery(gql`
     query getAnnouncements {
       announcements {
@@ -43,7 +51,7 @@ const Home: React.FC = () => {
         </BrowserView>
         <HomeContainer>
           <FilterTop nAnnouncements={8} />
-          <Grid>
+          <GridMobile>
             {data?.announcements?.map((announcement: any) => {
               return (
                 <AnnouncementCard
@@ -58,7 +66,7 @@ const Home: React.FC = () => {
                 />
               );
             })}
-          </Grid>
+          </GridMobile>
         </HomeContainer>
       </Container>
     </BackgroundColorWidth>
