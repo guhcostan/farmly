@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from 'react';
+
 interface Option {
   value: string;
   label: string;
@@ -9,7 +11,7 @@ export interface Props {
   placeholder: string;
   className?: string;
   value?: string;
-  onChange?: () => void;
-  onSelect?: () => void;
+  onChange?: ChangeEventHandler;
+  onSelect?: (value: string) => void;
   onBlur?: () => void;
 }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserView, isMobile } from 'react-device-detect';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import Banner from '../../components/Banner';
 import AnnouncementCard from '../../components/AnnouncementCard';
 import { Grid, HomeContainer } from './styles';
@@ -25,23 +25,37 @@ const Home: React.FC = () => {
     { url: 'https://img.olx.com.br/images/78/783152805778181.jpg' },
   ];
 
-  const { data, error } = useQuery(gql`
-    query getAnnouncements {
-      announcements {
-        id
-        nOx
-        value
-        nMonths
-        breed {
-          name
-        }
-        farm {
-          city
-          state
+  const [order, setOrder] = useState('ASC');
+  const [orderBy, setOrderBy] = useState('value');
+  const [getAnnouncements, { data, error, refetch }] = useLazyQuery(
+    gql`
+      query getAnnouncements($sortBy: SortBy) {
+        announcements(sortBy: $sortBy) {
+          id
+          nOx
+          value
+          nMonths
+          breed {
+            name
+          }
+          farm {
+            city
+            state
+          }
         }
       }
+    `,
+    {
+      variables: {
+        sortBy: { field: orderBy, order },
+      },
     }
-  `);
+  );
+
+  useEffect(() => {
+    getAnnouncements();
+  }, []);
+
   return (
     <BackgroundColorWidth>
       <Banner />
@@ -50,7 +64,16 @@ const Home: React.FC = () => {
           <Filter />
         </BrowserView>
         <HomeContainer>
-          <FilterTop nAnnouncements={8} />
+          <FilterTop
+            order={order}
+            orderBy={orderBy}
+            changeOrder={(orderFilter, orderByFilter) => {
+              setOrder(orderFilter);
+              setOrderBy(orderByFilter);
+              refetch();
+            }}
+            nAnnouncements={data?.announcements.length}
+          />
           <GridMobile>
             {data?.announcements?.map((announcement: any) => {
               return (

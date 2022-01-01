@@ -72,72 +72,75 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
           });
       }}
     >
-      {({ isSubmitting, values }) => (
-        <Form>
-          <Title>Criar anuncio</Title>
-          <Data>
-            <SelectorFormikWithMargin
-              placeholder="Selecione a fazenda do anuncio"
-              name="farmId"
-              /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-              // @ts-ignore
-              onChange={(event: any) => {
-                if (event.target.value === 'addFarm') {
-                  history.push('newFarm');
+      {({ isSubmitting, errors, values }) => {
+        console.log('announcement', values, errors);
+        return (
+          <Form>
+            <Title>Criar anuncio</Title>
+            <Data>
+              <SelectorFormikWithMargin
+                placeholder="Selecione a fazenda do anuncio"
+                name="farmId"
+                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                // @ts-ignore
+                onChange={(event: any) => {
+                  if (event.target.value === 'addFarm') {
+                    history.push('newFarm');
+                  }
+                }}
+                options={[
+                  ...(farms?.map((breed) => ({
+                    value: breed.id,
+                    label: breed.name,
+                  })) || []),
+                  {
+                    value: 'addFarm',
+                    label: 'Cadastrar nova fazenda +',
+                  },
+                ]}
+              />
+              <ImageUploader />
+              <InputFormikWithMargin placeholder="Titulo" name="title" />
+              <InputFormikWithMargin
+                type="textarea"
+                placeholder="Descrição"
+                name="description"
+              />
+              <InputFormikWithMargin
+                placeholder="Valor"
+                name="value"
+                prefix="R$"
+                type="currency"
+              />
+              <InputFormikWithMargin
+                placeholder="Numero de bois"
+                name="nOx"
+                type="number"
+              />
+              <InputFormikWithMargin
+                placeholder="Quantos meses tem o gado?"
+                name="nMonths"
+                type="number"
+              />
+              <SelectorFormikWithMargin
+                placeholder="Qual as raças dos bois?"
+                name="breedId"
+                options={
+                  breeds?.map((breed) => ({
+                    value: breed.id,
+                    label: breed.name,
+                  })) || []
                 }
-              }}
-              options={[
-                ...(farms?.map((breed) => ({
-                  value: breed.id,
-                  label: breed.name,
-                })) || []),
-                {
-                  value: 'addFarm',
-                  label: 'Cadastrar nova fazenda +',
-                },
-              ]}
-            />
-            <ImageUploader />
-            <InputFormikWithMargin placeholder="Titulo" name="title" />
-            <InputFormikWithMargin
-              type="textarea"
-              placeholder="Descrição"
-              name="description"
-            />
-            <InputFormikWithMargin
-              placeholder="Valor"
-              name="value"
-              prefix="R$"
-              type="currency"
-            />
-            <InputFormikWithMargin
-              placeholder="Numero de bois"
-              name="nOx"
-              type="number"
-            />
-            <InputFormikWithMargin
-              placeholder="Quantos meses tem o gado?"
-              name="nMonths"
-              type="number"
-            />
-            <SelectorFormikWithMargin
-              placeholder="Qual as raças dos bois?"
-              name="breedId"
-              options={
-                breeds?.map((breed) => ({
-                  value: breed.id,
-                  label: breed.name,
-                })) || []
-              }
-            />
-            <SquareButton
-              type="submit"
-              text="Publicar anuncio"
-              disabled={isSubmitting}
-            />
-          </Data>
-        </Form>
-      )}
+              />
+              <SquareButton
+                type="submit"
+                text="Publicar anuncio"
+                disabled={isSubmitting}
+              />
+            </Data>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
