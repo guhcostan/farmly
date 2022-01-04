@@ -9,7 +9,7 @@ const Banner: React.FC = () => {
     <FullWidthWrapperColor
       color={theme.colors.primary}
       height="200px"
-      image={`${process.env.S3_URL}gado.jpeg`}
+      image={`${process.env.REACT_APP_S3_URL}gado.jpeg`}
     >
       <Container>
         <h1>O maior site de comercio bovino</h1>

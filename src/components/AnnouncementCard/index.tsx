@@ -30,8 +30,8 @@ const AnnouncementCard: React.FC<Props> = ({
   return (
     <CardContainer>
       <Carousel showThumbs={false} showStatus={false}>
-        {thumbmails.map((t) => (
-          <Thumbmail src={t?.url} alt="" />
+        {thumbmails.map((url) => (
+          <Thumbmail src={url} alt="" />
         ))}
       </Carousel>
       <CardProperties

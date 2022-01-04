@@ -7,7 +7,5 @@ export interface Props {
   state: string;
   breed: string;
   nOxen: number;
-  thumbmails: Array<{
-    url: string;
-  }>;
+  thumbmails: string[];
 }

@@ -20,11 +20,6 @@ const GridMobile: React.FC = ({ children }) => {
 };
 
 const Home: React.FC = () => {
-  const thumbmails = [
-    { url: 'https://img.olx.com.br/images/78/789141929491690.jpg' },
-    { url: 'https://img.olx.com.br/images/78/783152805778181.jpg' },
-  ];
-
   const [order, setOrder] = useState('ASC');
   const [orderBy, setOrderBy] = useState('value');
   const [getAnnouncements, { data, error, refetch }] = useLazyQuery(
@@ -37,6 +32,9 @@ const Home: React.FC = () => {
           nMonths
           breed {
             name
+          }
+          photos {
+            thumbnail
           }
           farm {
             city
@@ -80,7 +78,9 @@ const Home: React.FC = () => {
                 <AnnouncementCard
                   id={announcement?.id}
                   price={announcement?.value}
-                  thumbmails={thumbmails}
+                  thumbmails={announcement?.photos.map(
+                    (photo: { thumbnail: string }) => photo.thumbnail
+                  )}
                   nOxen={announcement.nOx}
                   nMonths={announcement?.nMonths}
                   city={announcement.farm?.city}
