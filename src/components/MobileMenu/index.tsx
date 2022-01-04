@@ -17,12 +17,22 @@ const MobileMenu: React.FC<Props> = ({ opened, onClickOut }) => {
     <Background opened={opened} onClick={onClickOut}>
       <Menu opened={opened} onClick={(e) => e.stopPropagation()}>
         {!user ? (
-          <MenuButton onClick={() => history.push('/login')}>
+          <MenuButton
+            onClick={() => {
+              history.push('/login');
+              onClickOut();
+            }}
+          >
             <MdOutlineAccountCircle size={20} color={theme.colors.black} />
             <MenuText>Fazer login</MenuText>
           </MenuButton>
         ) : (
-          <MenuButton onClick={() => logout()}>
+          <MenuButton
+            onClick={() => {
+              logout();
+              onClickOut();
+            }}
+          >
             <MdOutlineAccountCircle size={20} color={theme.colors.black} />
             <MenuText>Logout</MenuText>
           </MenuButton>
