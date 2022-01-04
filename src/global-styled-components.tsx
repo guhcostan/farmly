@@ -8,11 +8,13 @@ import SelectorFormik from './components/SelectorFormik';
 
 interface FullWidthWrapperColorProps {
   color?: string;
+  height?: string;
   image?: string;
 }
 
 export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
   width: 100%;
+  height: ${(props) => props.height};
   display: flex;
   justify-content: center;
   background-color: ${(props) => props.color};

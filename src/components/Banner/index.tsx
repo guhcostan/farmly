@@ -8,6 +8,7 @@ const Banner: React.FC = () => {
   return (
     <FullWidthWrapperColor
       color={theme.colors.primary}
+      height="200px"
       image="/assets/gado.jpeg"
     >
       <Container>
