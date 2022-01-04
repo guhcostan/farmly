@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { isMobile } from 'react-device-detect';
 import Input from './components/Input';
 import Button from './components/Button';
 import InputFormik from './components/InputFormik';

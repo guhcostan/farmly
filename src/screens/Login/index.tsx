@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Formik } from 'formik';
+import { isMobile } from 'react-device-detect';
 import { SideContainer } from './styles';
 
 import {
@@ -14,12 +15,19 @@ import { useAuth } from '../../hooks/auth';
 import registerSchema from '../../formValidations/register';
 import loginSchema from '../../formValidations/login';
 
+const LoginWrapper: React.FC = ({ children }) => {
+  if (isMobile) {
+    return <div>{children}</div>;
+  }
+  return <RowCenter>{children}</RowCenter>;
+};
+
 const Login: React.FC = () => {
   const history = useHistory();
   const { login, signUp } = useAuth();
   return (
     <BackgroundColorWidthWhite>
-      <RowCenter>
+      <LoginWrapper>
         <SideContainer>
           <Formik
             initialValues={{ email: '', password: '' }}
@@ -107,7 +115,7 @@ const Login: React.FC = () => {
             )}
           </Formik>
         </SideContainer>
-      </RowCenter>
+      </LoginWrapper>
     </BackgroundColorWidthWhite>
   );
 };

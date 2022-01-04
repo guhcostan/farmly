@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdMenu, MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
 import { IoMdSearch } from 'react-icons/all';
@@ -15,9 +15,11 @@ import Logo from '../Logo';
 import Input from '../Input';
 import Button from '../Button';
 import { useAuth } from '../../hooks/auth';
+import MobileMenu from '../MobileMenu';
 
 const Header: React.FC = () => {
   const theme = useTheme();
+  const [mobileOpened, setMobileOpened] = useState(false);
   const history = useHistory();
   const { login, token, user, logout } = useAuth();
   return (
@@ -75,10 +77,17 @@ const Header: React.FC = () => {
         ) : (
           <Button
             textMode
+            onClick={() => {
+              setMobileOpened(true);
+            }}
             icon={<MdMenu size={30} color={theme.colors.black} />}
           />
         )}
       </HeaderContainer>
+      <MobileMenu
+        opened={mobileOpened}
+        onClickOut={() => setMobileOpened(false)}
+      />
     </HeaderStickContainer>
   );
 };
