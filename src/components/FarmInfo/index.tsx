@@ -19,6 +19,7 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
   return (
     <>
       <MapContainer>
+        <Title>{farm.name}</Title>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: 'AIzaSyAsJ4fmNN1UV7XbFfd8BUMwt3-PagFRCtE',
@@ -27,7 +28,6 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
           center={defaultProps.center}
         />
       </MapContainer>
-      <Title>{farm.name}</Title>
     </>
   );
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SelectContainer = styled.div`
   padding: 12px 8px;
   border-radius: 4px;
+  background-color: white;
   border: 1px solid black;
   display: flex;
 `;

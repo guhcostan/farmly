@@ -51,7 +51,11 @@ const AnnouncementMain: React.FC<Props> = ({
             R$ {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
           </Price>
           {!isMobile && (
-            <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+            <div>
+              <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+              ou
+              <Button text="Fazer oferta" fontSize={50} icon={<CartIcon />} />
+            </div>
           )}
         </RowSpaceBetween>
         <CardProperties
