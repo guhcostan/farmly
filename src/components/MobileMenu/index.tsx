@@ -16,6 +16,17 @@ const MobileMenu: React.FC<Props> = ({ opened, onClickOut }) => {
   return (
     <Background opened={opened} onClick={onClickOut}>
       <Menu opened={opened} onClick={(e) => e.stopPropagation()}>
+        <MenuButton
+          onClick={() => {
+            if (user) {
+              history.push('/newAnnouncement');
+            } else {
+              history.push('/login');
+            }
+          }}
+        >
+          <MenuText>Criar anuncio</MenuText>
+        </MenuButton>
         {!user ? (
           <MenuButton
             onClick={() => {
