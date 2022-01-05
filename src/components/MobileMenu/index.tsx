@@ -2,7 +2,14 @@ import React from 'react';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { Background, Menu, MenuButton, MenuText, MenuTitle } from './styles';
+import {
+  Background,
+  Menu,
+  MenuButton,
+  MenuPadding,
+  MenuText,
+  MenuTitle,
+} from './styles';
 import { useAuth } from '../../hooks/auth';
 
 interface Props {
@@ -16,39 +23,41 @@ const MobileMenu: React.FC<Props> = ({ opened, onClickOut }) => {
   return (
     <Background opened={opened} onClick={onClickOut}>
       <Menu opened={opened} onClick={(e) => e.stopPropagation()}>
-        <MenuTitle>Menu</MenuTitle>
-        <MenuButton
-          onClick={() => {
-            if (user) {
-              history.push('/newAnnouncement');
-            } else {
-              history.push('/login');
-            }
-          }}
-        >
-          <MenuText>Criar anuncio</MenuText>
-        </MenuButton>
-        {!user ? (
+        <MenuPadding>
+          <MenuTitle>Menu</MenuTitle>
           <MenuButton
             onClick={() => {
-              history.push('/login');
-              onClickOut();
+              if (user) {
+                history.push('/newAnnouncement');
+              } else {
+                history.push('/login');
+              }
             }}
           >
-            <MdOutlineAccountCircle size={20} color={theme.colors.black} />
-            <MenuText>Fazer login</MenuText>
+            <MenuText>Criar anuncio</MenuText>
           </MenuButton>
-        ) : (
-          <MenuButton
-            onClick={() => {
-              logout();
-              onClickOut();
-            }}
-          >
-            <MdOutlineAccountCircle size={20} color={theme.colors.black} />
-            <MenuText>Logout</MenuText>
-          </MenuButton>
-        )}
+          {!user ? (
+            <MenuButton
+              onClick={() => {
+                history.push('/login');
+                onClickOut();
+              }}
+            >
+              <MdOutlineAccountCircle size={20} color={theme.colors.black} />
+              <MenuText>Fazer login</MenuText>
+            </MenuButton>
+          ) : (
+            <MenuButton
+              onClick={() => {
+                logout();
+                onClickOut();
+              }}
+            >
+              <MdOutlineAccountCircle size={20} color={theme.colors.black} />
+              <MenuText>Logout</MenuText>
+            </MenuButton>
+          )}
+        </MenuPadding>
       </Menu>
     </Background>
   );

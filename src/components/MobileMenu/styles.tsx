@@ -21,6 +21,8 @@ export const Menu = styled.div<Prop>`
   transition: width 0.2s linear;
   height: 100vh;
   background-color: white;
+`;
+export const MenuPadding = styled.div`
   padding: 20px;
 `;
 export const MenuButton = styled.div`

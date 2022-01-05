@@ -84,10 +84,12 @@ const Header: React.FC = () => {
           />
         )}
       </HeaderContainer>
-      <MobileMenu
-        opened={mobileOpened}
-        onClickOut={() => setMobileOpened(false)}
-      />
+      {isMobile && (
+        <MobileMenu
+          opened={mobileOpened}
+          onClickOut={() => setMobileOpened(false)}
+        />
+      )}
     </HeaderStickContainer>
   );
 };

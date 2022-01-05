@@ -5,6 +5,7 @@ import { isMobile } from 'react-device-detect';
 import useDimensions from 'react-use-dimensions';
 import PhotoPreview from '../PhotoPreview';
 import {
+  ButtonContainer,
   CardProperties,
   CartIcon,
   Data,
@@ -51,11 +52,11 @@ const AnnouncementMain: React.FC<Props> = ({
             R$ {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
           </Price>
           {!isMobile && (
-            <div>
+            <ButtonContainer>
               <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
               ou
-              <Button text="Fazer oferta" fontSize={50} icon={<CartIcon />} />
-            </div>
+              <Button text="Fazer oferta" fontSize={30} />
+            </ButtonContainer>
           )}
         </RowSpaceBetween>
         <CardProperties
@@ -66,10 +67,14 @@ const AnnouncementMain: React.FC<Props> = ({
           nMonths={nMonths}
           nOxen={nOxen}
         />
-        <Description>{description}</Description>
         {isMobile && (
-          <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+          <ButtonContainer>
+            <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+            ou
+            <Button text="Fazer oferta" fontSize={30} />
+          </ButtonContainer>
         )}
+        <Description>{description}</Description>
       </Data>
     </Wrapper>
   );

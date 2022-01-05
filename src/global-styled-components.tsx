@@ -95,6 +95,7 @@ export const SquareButton = styled(Button)`
 
 export const RowSpaceBetween = styled(Row)`
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Title = styled.span`

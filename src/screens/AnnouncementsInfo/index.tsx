@@ -32,6 +32,9 @@ const AnnouncementsInfo: React.FC = (props) => {
           breed {
             name
           }
+          photos {
+            original
+          }
           farm {
             id
             city
@@ -77,7 +80,9 @@ const AnnouncementsInfo: React.FC = (props) => {
       <Container style={{ display: 'flex' }}>
         <Card>
           <AnnouncementMain
-            photos={thumbmails.map((t) => t.url)}
+            photos={announcement?.photos.map(
+              (photo: { original: string }) => photo.original
+            )}
             nOxen={announcement.nOx}
             nMonths={announcement?.nMonths}
             city={announcement.farm?.city}

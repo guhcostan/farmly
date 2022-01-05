@@ -6,6 +6,14 @@ export const Data = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
@@ -23,6 +31,7 @@ export const Price = styled.h1`
 
 export const Description = styled.p`
   margin: 0;
+  padding: 20px 0;
   margin-top: 10px;
   flex: 1;
 `;

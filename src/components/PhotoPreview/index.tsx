@@ -15,7 +15,7 @@ export const Thumbmail = styled.img`
 const PhotoPreview: React.FC<Props> = ({ photosUrls }) => {
   const renderPhotos = useCallback(() => {
     return (
-      <div style={{ maxWidth: 600 }}>
+      <div style={{ maxWidth: 600, flex: 1 }}>
         <Carousel showThumbs={false} showStatus={false} width="100%">
           {photosUrls.map((url) => (
             <Thumbmail src={url} alt="" />
