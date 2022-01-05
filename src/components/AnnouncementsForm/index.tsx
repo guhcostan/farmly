@@ -43,7 +43,7 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
   return (
     <Formik
       initialValues={{
-        photos: [],
+        photoIds: [],
         title: '',
         description: '',
         nOx: '',
@@ -55,13 +55,13 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
       validateOnChange={false}
       validationSchema={announcementSchema}
       onSubmit={(announcement, { setSubmitting }) => {
+        console.log('announcement', announcement);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { photos, ...rest } = announcement;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         createAnnouncement({
           variables: {
-            announcement: rest,
+            announcement,
           },
         })
           .then(({ data }) => {
@@ -72,8 +72,7 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
           });
       }}
     >
-      {({ isSubmitting, errors, values }) => {
-        console.log('announcement', values, errors);
+      {({ isSubmitting, errors, values, setFieldValue }) => {
         return (
           <Form>
             <Title>Criar anuncio</Title>
@@ -99,7 +98,12 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
                   },
                 ]}
               />
-              <ImageUploader />
+              <ImageUploader
+                onFinishUpload={(photoId) => {
+                  console.log('photoId', photoId);
+                  setFieldValue('photoIds', [...values.photoIds, photoId]);
+                }}
+              />
               <InputFormikWithMargin placeholder="Titulo" name="title" />
               <InputFormikWithMargin
                 type="textarea"

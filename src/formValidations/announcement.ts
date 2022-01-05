@@ -23,9 +23,9 @@ const announcementSchema = yup.object().shape({
     .required('O campo idade é obrigatório'),
   breedId: yup.string().required('O campo raça é obrigatório'),
   farmId: yup.string().required('O campo fazenda é obrigatório'),
-  photos: yup
+  photoIds: yup
     .array()
-    // .min(1, 'Pelo menos uma foto é nescessaria')
+    .min(1, 'Pelo menos uma foto é nescessaria')
     .required('Pelo menos uma foto é nescessaria'),
 });
 

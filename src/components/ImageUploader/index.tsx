@@ -7,11 +7,33 @@ import PhotoPreview from "../PhotoPreview";
 import {MdAdd, MdRemove} from "react-icons/all";
 import {Row, FlexCenter, ImageContainer} from "../../global-styled-components";
 import {DragAndDropButton} from "./styles";
+import {gql, useMutation} from "@apollo/client";
 
-const ImageUploader: React.FC = () => {
+interface Props {
+  onFinishUpload: (photoId: string) => void
+}
+
+const ImageUploader: React.FC<Props> = ({onFinishUpload}) => {
   const [images, setImages] = React.useState([]);
-  const onChange = (value) => {
+  const [uploadImage] = useMutation(gql`
+  mutation uploadImage($photo: PhotoInput){
+    createImage(photo: $photo){
+      id
+    }
+  }
+  `)
+  const onChange = async (value) => {
     setImages(value)
+    if (value.length > images.length) {
+      const image = await uploadImage({
+        variables: {
+          photo: {
+            base64: value[value.length - 1].data_url
+          }
+        }
+      })
+      onFinishUpload(image?.data?.createImage?.id)
+    }
   }
   return (
     <ImageUploading
