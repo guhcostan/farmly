@@ -8,6 +8,8 @@ import HooksProvider from './hooks';
 
 const AppContainer = styled.div`
   display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
   align-items: center;
   justify-items: center;
   flex-direction: column;

@@ -16,15 +16,23 @@ export const Background = styled.div<Prop>`
 `;
 export const Menu = styled.div<Prop>`
   position: absolute;
-  right: ${(props) => (props.opened ? '0px' : '-250px')};
-  transition: right 0.2s linear;
-  width: 250px;
+  width: ${(props) => (props.opened ? '250px' : '0px')};
+  right: 0;
+  transition: width 0.2s linear;
   height: 100vh;
   background-color: white;
   padding: 20px;
 `;
 export const MenuButton = styled.div`
-  border-bottom: 1px black;
+  border-bottom: 1px black solid;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+`;
+export const MenuTitle = styled.h2`
+  border-bottom: 1px black solid;
+  padding: 20px 0;
+  margin: 0;
   display: flex;
   align-items: center;
 `;

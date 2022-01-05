@@ -4,7 +4,6 @@ import Properties from '../Properties';
 import SearchBox from '../SearchBox';
 
 export const Data = styled.div`
-  margin-left: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;

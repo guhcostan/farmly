@@ -32,7 +32,7 @@ export const BackgroundColorWidth = styled.div`
   overflow-x: hidden;
   width: 100%;
   background-color: #f5f5f5;
-  justify-content: center;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

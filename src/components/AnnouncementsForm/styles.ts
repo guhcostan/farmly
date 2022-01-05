@@ -3,7 +3,6 @@ import { MdShoppingCart } from 'react-icons/all';
 import Properties from '../Properties';
 
 export const Data = styled.div`
-  margin-left: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;

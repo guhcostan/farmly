@@ -2,7 +2,7 @@ import React from 'react';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { Background, Menu, MenuButton, MenuText } from './styles';
+import { Background, Menu, MenuButton, MenuText, MenuTitle } from './styles';
 import { useAuth } from '../../hooks/auth';
 
 interface Props {
@@ -16,6 +16,7 @@ const MobileMenu: React.FC<Props> = ({ opened, onClickOut }) => {
   return (
     <Background opened={opened} onClick={onClickOut}>
       <Menu opened={opened} onClick={(e) => e.stopPropagation()}>
+        <MenuTitle>Menu</MenuTitle>
         <MenuButton
           onClick={() => {
             if (user) {
