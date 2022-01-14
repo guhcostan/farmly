@@ -13,7 +13,10 @@ interface FullWidthWrapperColorProps {
 }
 
 export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
+  max-width: ${(props) => props.theme.maxWidth}px;
   width: 100%;
+  border-radius: 10px;
+  margin: 10px 0;
   height: ${(props) => props.height};
   display: flex;
   justify-content: center;

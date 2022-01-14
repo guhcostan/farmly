@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   margin: 5px;
   height: 400px;
   overflow: hidden;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -30,14 +31,15 @@ export const Price = styled.span`
 `;
 
 export const PriceContainer = styled.div`
-  width: 100%;
-  height: 50px;
+  margin: 10px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 20px 0px;
   background-color: ${(props) => props.theme.colors.primary};
   border-top: 1px solid ${(props) => props.theme.colors.black};
-  border-radius: 0 0 10px 10px;
   justify-content: center;
 `;
 

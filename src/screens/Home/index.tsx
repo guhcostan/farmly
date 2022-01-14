@@ -58,9 +58,6 @@ const Home: React.FC = () => {
     <BackgroundColorWidth>
       <Banner />
       <Container style={{ display: 'flex' }}>
-        <BrowserView>
-          <Filter />
-        </BrowserView>
         <HomeContainer>
           <FilterTop
             order={order}

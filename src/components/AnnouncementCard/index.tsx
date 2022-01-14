@@ -26,7 +26,6 @@ const AnnouncementCard: React.FC<Props> = ({
   currency,
 }) => {
   const history = useHistory();
-  const [mouseHouver, setMouseHover] = useState(false);
   return (
     <CardContainer>
       <Carousel showThumbs={false} showStatus={false}>
@@ -42,31 +41,11 @@ const AnnouncementCard: React.FC<Props> = ({
         nOxen={nOxen}
       />
 
-      <PriceContainer
-        onMouseEnter={() => setMouseHover(true)}
-        onMouseLeave={() => setMouseHover(false)}
-      >
-        {!mouseHouver ? (
-          <PriceMobileContainer>
-            <Price>
-              {currency || 'R$'}{' '}
-              {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
-            </Price>
-            <MobileView>
-              <Button
-                text="Comprar!"
-                onClick={() => history.push(`/announcement/${id}`)}
-                fontSize={20}
-              />
-            </MobileView>
-          </PriceMobileContainer>
-        ) : (
-          <Button
-            text="Comprar!"
-            onClick={() => history.push(`/announcement/${id}`)}
-            fontSize={50}
-          />
-        )}
+      <PriceContainer onClick={() => history.push(`/announcement/${id}`)}>
+        <Price>
+          {currency || 'R$'}{' '}
+          {Number.parseFloat(String(price)).toFixed(2).replace('.', ',')}
+        </Price>
       </PriceContainer>
     </CardContainer>
   );
