@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MdShoppingCart } from 'react-icons/all';
+import { isMobile } from 'react-device-detect';
 import Properties from '../Properties';
 import SearchBox from '../SearchBox';
 
@@ -38,5 +39,5 @@ export const SearchBoxMap = styled(SearchBox)`
 export const MapContainer = styled.div`
   margin: 16px 0;
   height: 300px;
-  width: 100%;
+  width: ${(_) => (isMobile ? 95 : 100)}%;
 `;

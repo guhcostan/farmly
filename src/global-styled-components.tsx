@@ -14,7 +14,7 @@ interface FullWidthWrapperColorProps {
 
 export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
   max-width: ${(props) => props.theme.maxWidth}px;
-  width: 100%;
+  width: ${() => (isMobile ? 95 : 100)}%;
   border-radius: 10px;
   margin: 10px 0;
   height: ${(props) => props.height};
@@ -27,7 +27,7 @@ export const FullWidthWrapperColor = styled.div<FullWidthWrapperColorProps>`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  width: ${() => (isMobile ? 95 : 100)}%;
   max-width: ${(props) => props.theme.maxWidth}px;
 `;
 
