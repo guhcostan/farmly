@@ -9,6 +9,7 @@ import {
 } from '../../global-styled-components';
 import AnnouncementMain from '../../components/AnnouncementMain';
 import FarmInfo from '../../components/FarmInfo';
+import Divider from '../../components/Divider';
 
 interface Params {
   id: string;
@@ -92,6 +93,7 @@ const AnnouncementsInfo: React.FC = (props) => {
             title={announcement.title}
             description={announcement.description}
           />
+          <Divider />
           {farmData?.farm && <FarmInfo farm={farmData.farm} />}
         </Card>
       </Container>

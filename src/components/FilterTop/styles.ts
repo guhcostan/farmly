@@ -7,6 +7,7 @@ export const FilterContainer = styled.div`
   padding: 20px;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 20px;
 `;
 export const FilterItemContainer = styled.div`
   display: flex;

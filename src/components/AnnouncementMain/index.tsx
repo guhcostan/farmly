@@ -26,10 +26,21 @@ interface Props extends PropertiesProps {
 
 const Wrapper: React.FC = ({ children }) => {
   const [ref, { x, y, width }] = useDimensions();
+  const style = {
+    margin: '0 0 20px 0',
+  };
   if (width < 1000) {
-    return <div ref={ref}>{children}</div>;
+    return (
+      <div style={style} ref={ref}>
+        {children}
+      </div>
+    );
   }
-  return <Row ref={ref}>{children}</Row>;
+  return (
+    <Row style={style} ref={ref}>
+      {children}
+    </Row>
+  );
 };
 const AnnouncementMain: React.FC<Props> = ({
   photos,
@@ -53,7 +64,11 @@ const AnnouncementMain: React.FC<Props> = ({
           </Price>
           {!isMobile && (
             <ButtonContainer>
-              <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
+              <Button
+                text="Comprar"
+                fontSize={30}
+                icon={<CartIcon size={20} />}
+              />
               ou
               <Button text="Fazer oferta" fontSize={30} />
             </ButtonContainer>

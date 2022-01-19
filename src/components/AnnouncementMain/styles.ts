@@ -12,8 +12,9 @@ export const Data = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  height: 150px;
 `;
 
 export const Title = styled.h1`

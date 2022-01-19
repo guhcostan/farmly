@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { MapContainer } from './styles';
+import { FarmContainer, MapContainer } from './styles';
 import { Row, Title } from '../../global-styled-components';
 import SearchBox from '../SearchBox';
 
@@ -19,9 +19,9 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
   };
   const markerRef = useRef();
   return (
-    <>
+    <FarmContainer>
+      <Title>{farm.name}</Title>
       <MapContainer>
-        <Title>{farm.name}</Title>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: 'AIzaSyAsJ4fmNN1UV7XbFfd8BUMwt3-PagFRCtE',
@@ -37,7 +37,7 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
           center={defaultProps.center}
         />
       </MapContainer>
-    </>
+    </FarmContainer>
   );
 };
 
