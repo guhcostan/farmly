@@ -14,7 +14,6 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 150px;
 `;
 
 export const Title = styled.h1`

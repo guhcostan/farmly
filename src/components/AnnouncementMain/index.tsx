@@ -69,8 +69,7 @@ const AnnouncementMain: React.FC<Props> = ({
                 fontSize={30}
                 icon={<CartIcon size={20} />}
               />
-              ou
-              <Button text="Fazer oferta" fontSize={30} />
+              <Button textMode text="Fazer oferta" fontSize={12} />
             </ButtonContainer>
           )}
         </RowSpaceBetween>
@@ -84,9 +83,12 @@ const AnnouncementMain: React.FC<Props> = ({
         />
         {isMobile && (
           <ButtonContainer>
-            <Button text="Comprar" fontSize={50} icon={<CartIcon />} />
-            ou
-            <Button text="Fazer oferta" fontSize={30} />
+            <Button
+              text="Comprar"
+              fontSize={30}
+              icon={<CartIcon size={20} />}
+            />
+            <Button textMode text="Fazer oferta" fontSize={12} />
           </ButtonContainer>
         )}
         <Description>{description}</Description>

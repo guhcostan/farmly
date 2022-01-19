@@ -6,6 +6,7 @@ export interface Props {
   className?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
   textMode?: boolean;
+  bold?: boolean;
   disabled?: boolean;
   onClick?: () => void;
 }

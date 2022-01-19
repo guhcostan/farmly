@@ -6,6 +6,7 @@ const Button: React.FC<Props> = ({
   icon,
   text,
   textMode,
+  bold = true,
   onClick,
   style,
   type = 'button',
@@ -25,7 +26,12 @@ const Button: React.FC<Props> = ({
       <ButtonContainer>
         {icon}
         {text && (
-          <ButtonText textMode={!textMode} margin={!!icon} fontSize={fontSize}>
+          <ButtonText
+            bold={bold}
+            textMode={!textMode}
+            margin={!!icon}
+            fontSize={fontSize}
+          >
             {text}
           </ButtonText>
         )}

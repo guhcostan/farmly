@@ -9,6 +9,7 @@ interface TextProps {
   margin: boolean;
   fontSize?: number;
   textMode: boolean;
+  bold?: boolean;
   theme: DefaultTheme;
 }
 
@@ -34,5 +35,5 @@ export const ButtonText = styled.span<TextProps>`
   margin-left: ${(props) => (props.margin ? 4 : 0)}px;
   color: ${(props) => props.theme.colors[props.textMode ? 'white' : 'black']};
   font-size: ${(props) => props.fontSize || 16}px;
-  font-weight: 500;
+  font-weight: ${(props) => (props.bold ? '700' : '500')};
 `;

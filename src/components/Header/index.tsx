@@ -57,6 +57,7 @@ const Header: React.FC = () => {
                     color={theme.colors.black}
                   />
                 }
+                bold={false}
                 onClick={() => {
                   logout();
                 }}

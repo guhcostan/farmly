@@ -21,6 +21,9 @@ const FarmInfo: React.FC<Props> = ({ farm }) => {
   return (
     <FarmContainer>
       <Title>{farm.name}</Title>
+      <Title>
+        {farm.city} - {farm.state}
+      </Title>
       <MapContainer>
         <GoogleMapReact
           bootstrapURLKeys={{

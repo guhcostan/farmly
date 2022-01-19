@@ -101,13 +101,13 @@ export const RowSpaceBetween = styled(Row)`
   align-items: center;
 `;
 
-export const Title = styled.span`
+export const Title = styled.div`
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 30px;
 `;
 
-export const Subtitle = styled.span`
+export const Subtitle = styled.div`
   font-size: 24px;
   font-weight: bold;
 `;
