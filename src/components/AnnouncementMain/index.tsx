@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import useDimensions from 'react-use-dimensions';
+import { useHistory } from 'react-router-dom';
 import PhotoPreview from '../PhotoPreview';
 import {
   ButtonContainer,
@@ -16,6 +17,8 @@ import {
 import { Row, RowSpaceBetween } from '../../global-styled-components';
 import { Props as PropertiesProps } from '../Properties';
 import Button from '../Button';
+import OfferModal from '../OfferModal';
+import { useAuth } from '../../hooks/auth';
 
 interface Props extends PropertiesProps {
   photos: string[];
@@ -53,6 +56,17 @@ const AnnouncementMain: React.FC<Props> = ({
   title,
   description,
 }) => {
+  const history = useHistory();
+  const { user } = useAuth();
+  const [offerModalOpened, setOfferModalOpened] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const createOffer = () => {
+    if (user) {
+      setOfferModalOpened(true);
+    } else {
+      history.push('/login');
+    }
+  };
   return (
     <Wrapper>
       <PhotoPreview photosUrls={photos} />
@@ -69,7 +83,12 @@ const AnnouncementMain: React.FC<Props> = ({
                 fontSize={30}
                 icon={<CartIcon size={20} />}
               />
-              <Button textMode text="Fazer oferta" fontSize={12} />
+              <Button
+                textMode
+                text="Fazer oferta"
+                fontSize={12}
+                onClick={() => createOffer()}
+              />
             </ButtonContainer>
           )}
         </RowSpaceBetween>
@@ -88,11 +107,24 @@ const AnnouncementMain: React.FC<Props> = ({
               fontSize={30}
               icon={<CartIcon size={20} />}
             />
-            <Button textMode text="Fazer oferta" fontSize={12} />
+            <Button
+              textMode
+              text="Fazer oferta"
+              fontSize={12}
+              onClick={() => createOffer()}
+            />
           </ButtonContainer>
         )}
         <Description>{description}</Description>
       </Data>
+      <OfferModal
+        opened={offerModalOpened}
+        onClickOut={() => setOfferModalOpened(false)}
+        announcement={{
+          value: price,
+          nOx: nOxen,
+        }}
+      />
     </Wrapper>
   );
 };

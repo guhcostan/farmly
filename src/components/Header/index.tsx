@@ -43,6 +43,7 @@ const Header: React.FC = () => {
                     color={theme.colors.black}
                   />
                 }
+                bold={false}
                 onClick={() => {
                   history.push('/login');
                 }}

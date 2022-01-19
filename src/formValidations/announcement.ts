@@ -15,8 +15,8 @@ const announcementSchema = yup.object().shape({
     .required('O campo preço é obrigatório'),
   nOx: yup
     .number()
-    .min(1, 'O anuncio deve ter pelo menos um boi')
-    .required('O campo numero de bois é obrigatório'),
+    .min(1, 'O anuncio deve ter pelo menos uma cabeça de gado')
+    .required('O campo numero de cabeças de gado é obrigatório'),
   nMonths: yup
     .number()
     .min(1, 'O gado deve ter pelo menos 1 mes de idade')

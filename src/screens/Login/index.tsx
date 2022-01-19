@@ -51,6 +51,7 @@ const Login: React.FC = () => {
                 />
                 <SquareButton
                   text="Entrar"
+                  bold={false}
                   type="submit"
                   disabled={isSubmitting}
                 />
@@ -107,7 +108,7 @@ const Login: React.FC = () => {
                   mask="999.999.999-99"
                 />
                 <SquareButton
-                  text="Criar coonnta"
+                  text="Criar conta"
                   type="submit"
                   disabled={isSubmitting}
                 />

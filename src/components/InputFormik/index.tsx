@@ -3,15 +3,21 @@
 // @ts-nocheck
 import React from 'react';
 import { useField } from 'formik';
+import styled from 'styled-components';
 import { Props } from './interfaces';
 import Input from '../Input';
 
-const InputFormik: React.FC<Props> = ({ name = '', ...props }) => {
+const Observation = styled.div`
+  font-size: 12px;
+`;
+
+const InputFormik: React.FC<Props> = ({ name = '', observation, ...props }) => {
   const [field, meta] = useField({ name });
 
   return (
     <>
       <Input {...field} {...props} />
+      {observation ? <Observation>* {observation}</Observation> : null}
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}

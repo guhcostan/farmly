@@ -117,7 +117,7 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
                 type="currency"
               />
               <InputFormikWithMargin
-                placeholder="Numero de bois"
+                placeholder="Numero de cabeças de gado"
                 name="nOx"
                 type="number"
               />
@@ -127,7 +127,7 @@ const AnnouncementForm: React.FC<Props> = ({ farms, breeds }) => {
                 type="number"
               />
               <SelectorFormikWithMargin
-                placeholder="Qual as raças dos bois?"
+                placeholder="Qual as raças dos cabeças de gado?"
                 name="breedId"
                 options={
                   breeds?.map((breed) => ({
