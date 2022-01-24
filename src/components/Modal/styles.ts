@@ -26,5 +26,5 @@ export const ModalStyled = styled.div<Prop>`
   transform: translate(-50%, 50%);
   transition: bottom 0.2s linear;
   width: 400px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
 `;

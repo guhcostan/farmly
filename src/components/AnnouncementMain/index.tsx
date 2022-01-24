@@ -67,6 +67,14 @@ const AnnouncementMain: React.FC<Props> = ({
       history.push('/login');
     }
   };
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const goToCheckout = () => {
+    if (user) {
+      history.push('/checkout');
+    } else {
+      history.push('/login');
+    }
+  };
   return (
     <Wrapper>
       <PhotoPreview photosUrls={photos} />
@@ -82,6 +90,7 @@ const AnnouncementMain: React.FC<Props> = ({
                 text="Comprar"
                 fontSize={30}
                 icon={<CartIcon size={20} />}
+                onClick={() => goToCheckout()}
               />
               <Button
                 textMode
@@ -106,6 +115,7 @@ const AnnouncementMain: React.FC<Props> = ({
               text="Comprar"
               fontSize={30}
               icon={<CartIcon size={20} />}
+              onClick={() => goToCheckout()}
             />
             <Button
               textMode

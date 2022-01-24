@@ -7,7 +7,7 @@ export const PropertieRow = styled.div`
   margin: 10px 0;
   display: flex;
   align-items: center;
-  color: white;
+  color: ${(props) => props.theme.colors.white};
 `;
 
 interface Props {

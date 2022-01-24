@@ -6,6 +6,7 @@ import AnnouncementsInfo from '../screens/AnnouncementsInfo';
 import Login from '../screens/Login';
 import AnnouncementCreate from '../screens/AnnouncementCreate';
 import FarmCreate from '../screens/FarmCreate';
+import Checkout from '../screens/Checkout';
 
 const LoginNavigation: React.FC = () => {
   return (
@@ -23,6 +24,9 @@ const LoginNavigation: React.FC = () => {
         </Route>
         <Route path="/newFarm" exact>
           <FarmCreate />
+        </Route>
+        <Route path="/checkout" exact>
+          <Checkout />
         </Route>
         <Route path="/">
           <Home />

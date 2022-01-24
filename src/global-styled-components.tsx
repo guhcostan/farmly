@@ -34,16 +34,14 @@ export const Container = styled.div`
 export const BackgroundColorWidth = styled.div`
   overflow-x: hidden;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.colors.light};
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const BackgroundColorWidthWhite = styled(BackgroundColorWidth)`
-  background-color: white;
-`;
+export const BackgroundColorWidthWhite = styled(BackgroundColorWidth)``;
 export const InputWithMargin = styled(Input)`
   margin: 8px 0;
 `;
@@ -104,10 +102,12 @@ export const RowSpaceBetween = styled(Row)`
 export const Title = styled.div`
   font-size: 32px;
   font-weight: 700;
+  color: ${(props) => props.theme.colors.black};
   margin-bottom: 30px;
 `;
 
 export const Subtitle = styled.div`
   font-size: 24px;
+  color: ${(props) => props.theme.colors.black};
   font-weight: bold;
 `;

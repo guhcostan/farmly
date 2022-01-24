@@ -4,7 +4,7 @@ export const SelectContainer = styled.div`
   padding: 12px 8px;
   border-radius: 4px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.theme.colors.black};
   display: flex;
 `;
 

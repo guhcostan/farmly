@@ -12,7 +12,7 @@ const Line = styled.div`
   width: 90%;
   margin: 10px 0;
   height: 1px;
-  background-color: black;
+  background-color: ${(props) => props.theme.colors.black};
 `;
 
 const Divider: React.FC = () => {

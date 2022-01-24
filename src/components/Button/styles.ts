@@ -33,7 +33,7 @@ export const ButtonContainer = styled.div`
 
 export const ButtonText = styled.span<TextProps>`
   margin-left: ${(props) => (props.margin ? 4 : 0)}px;
-  color: ${(props) => props.theme.colors[props.textMode ? 'white' : 'black']};
+  color: ${(props) => (props.textMode ? 'white' : props.theme.colors.black)};
   font-size: ${(props) => props.fontSize || 16}px;
   font-weight: ${(props) => (props.bold ? '700' : '500')};
 `;

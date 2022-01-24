@@ -5,7 +5,7 @@ export const HomeContainer = styled(Container)`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 20px;
   margin: 20px 0;
   padding: 0 20px;

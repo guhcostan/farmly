@@ -20,19 +20,19 @@ export const Menu = styled.div<Prop>`
   right: 0;
   transition: width 0.2s linear;
   height: 100vh;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 export const MenuPadding = styled.div`
   padding: 20px;
 `;
 export const MenuButton = styled.div`
-  border-bottom: 1px black solid;
+  border-bottom: 1px ${(props) => props.theme.colors.black} solid;
   padding: 10px 0;
   display: flex;
   align-items: center;
 `;
 export const MenuTitle = styled.h2`
-  border-bottom: 1px black solid;
+  border-bottom: 1px ${(props) => props.theme.colors.black} solid;
   padding: 20px 0;
   margin: 0;
   display: flex;

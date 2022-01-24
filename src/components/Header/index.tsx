@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   const history = useHistory();
   const { login, token, user, logout } = useAuth();
   return (
-    <HeaderStickContainer color="white">
+    <HeaderStickContainer color={theme.colors.white}>
       <HeaderContainer>
         <Logo />
         <InputContainer>

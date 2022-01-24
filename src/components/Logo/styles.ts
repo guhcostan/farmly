@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LogoContainer = styled.div`
-  color: black;
+  color: ${(props) => props.theme.colors.black};
   font-size: 32px;
   cursor: pointer;
 `;

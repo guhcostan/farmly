@@ -19,4 +19,5 @@ export const FilterItemContainer = styled.div`
 `;
 export const Label = styled.span`
   margin-right: 10px;
+  color: ${(props) => props.theme.colors.black};
 `;

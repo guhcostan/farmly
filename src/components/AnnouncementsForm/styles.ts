@@ -10,10 +10,11 @@ export const Data = styled.div`
 
 export const Title = styled.h1`
   margin: 0;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 export const CartIcon = styled(MdShoppingCart)`
-  color: white;
+  color: ${(props) => props.theme.colors.white};
   font-size: 30px;
 `;
 export const Price = styled.h1`

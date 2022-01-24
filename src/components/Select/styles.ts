@@ -12,7 +12,7 @@ export const Option = styled.option``;
 
 export const SelectContainer = styled.div`
   border-radius: 0.25rem;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
   padding: 2px 12px;

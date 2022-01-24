@@ -1,0 +1,100 @@
+import React, { useEffect } from 'react';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { Card } from './styles';
+
+import {
+  BackgroundColorWidth,
+  Container,
+} from '../../global-styled-components';
+import AnnouncementMain from '../../components/AnnouncementMain';
+import FarmInfo from '../../components/FarmInfo';
+import Divider from '../../components/Divider';
+
+interface Params {
+  id: string;
+}
+
+const Checkout: React.FC = (props) => {
+  const { id } = useParams<Params>();
+  const { data, error } = useQuery(
+    gql`
+      query getAnnouncements($id: ID!) {
+        announcement(id: $id) {
+          nOx
+          title
+          description
+          value
+          nMonths
+          breed {
+            name
+          }
+          photos {
+            original
+          }
+          farm {
+            id
+            city
+            state
+          }
+        }
+      }
+    `,
+    {
+      variables: {
+        id,
+      },
+    }
+  );
+  const [loadFarm, { data: farmData }] = useLazyQuery(
+    gql`
+      query getFarm($id: ID!) {
+        farm(id: $id) {
+          name
+          coordinates
+          city
+          state
+        }
+      }
+    `
+  );
+  useEffect(() => {
+    if (data?.announcement?.farm?.id) {
+      loadFarm({
+        variables: {
+          id: data.announcement.farm.id,
+        },
+      });
+    }
+  }, [data?.announcement?.farm?.id, loadFarm]);
+
+  if (!data) {
+    return <div />;
+  }
+  const { announcement } = data;
+  return (
+    <BackgroundColorWidth>
+      <Container style={{ display: 'flex' }}>
+        <Card>
+          <AnnouncementMain
+            photos={announcement?.photos.map(
+              (photo: { original: string }) => photo.original
+            )}
+            nOxen={announcement.nOx}
+            nMonths={announcement?.nMonths}
+            city={announcement.farm?.city}
+            price={announcement.value}
+            state={announcement.farm?.state}
+            breed={announcement.breed?.name}
+            title={announcement.title}
+            description={announcement.description}
+          />
+          <Divider />
+          {farmData?.farm && <FarmInfo farm={farmData.farm} />}
+        </Card>
+      </Container>
+    </BackgroundColorWidth>
+  );
+};
+
+export default Checkout;

@@ -8,7 +8,7 @@ export const CardContainer = styled.div`
   margin: 5px;
   height: 400px;
   overflow: hidden;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -39,7 +39,6 @@ export const PriceContainer = styled.div`
   align-items: center;
   padding: 20px 0px;
   background-color: ${(props) => props.theme.colors.primary};
-  border-top: 1px solid ${(props) => props.theme.colors.black};
   justify-content: center;
 `;
 
