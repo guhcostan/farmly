@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+import Switch from 'react-switch';
 import { MdMenu, MdOutlineAccountCircle } from 'react-icons/md';
 import { useTheme } from 'styled-components';
 import { IoMdSearch } from 'react-icons/all';
@@ -16,9 +18,13 @@ import Input from '../Input';
 import Button from '../Button';
 import { useAuth } from '../../hooks/auth';
 import MobileMenu from '../MobileMenu';
+import { useConfig } from '../../contexts/Configs';
 
 const Header: React.FC = () => {
   const theme = useTheme();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { darkMode, toggleDarkMode } = useConfig();
   const [mobileOpened, setMobileOpened] = useState(false);
   const history = useHistory();
   const { login, token, user, logout } = useAuth();
@@ -85,6 +91,7 @@ const Header: React.FC = () => {
             icon={<MdMenu size={30} color={theme.colors.black} />}
           />
         )}
+        <Switch onChange={toggleDarkMode} checked={darkMode} />
       </HeaderContainer>
       {isMobile && (
         <MobileMenu

@@ -7,7 +7,9 @@ const ConfigContext = React.createContext({
 });
 
 const ConfigProvider: React.FC = ({ children }) => {
-  const [darkMode, toggleDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const toggleDarkMode = () => setDarkMode(!darkMode);
   return (
     <ConfigContext.Provider
       value={{
